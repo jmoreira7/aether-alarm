@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Snoozeloo" parent="Base.Theme.Snoozeloo" />
+
+    <style name="Theme.Snoozeloo.Splashscreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#4664FF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/alarm_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Snoozeloo</item>
+    </style>
 </resources>

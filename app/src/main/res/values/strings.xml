@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Snoozeloo</string>
+
+    <!-- activity_main.xml -->
+    <string name="activity_main_title">Your Alarms</string>
+    <string name="activity_main_no_alarms_yet_text">It\'s empty! Add the first alarm so you don\'t miss an important moment!</string>
 </resources>

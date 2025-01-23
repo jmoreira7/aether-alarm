@@ -8,12 +8,52 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/activity_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/activity_main_title_margin_start"
+        android:layout_marginTop="@dimen/activity_main_title_margin_top"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/activity_main_title"
+        android:textColor="@color/vulcan"
+        android:textSize="@dimen/activity_main_title_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/activity_main_no_alarms_yet_alarm_logo"
+        android:layout_width="@dimen/activity_main_no_alarms_yet_alarm_logo_width"
+        android:layout_height="@dimen/activity_main_no_alarms_yet_alarm_logo_height"
+        android:layout_marginBottom="@dimen/activity_main_no_alarms_yet_alarm_logo_margin_bottom"
+        android:src="@drawable/alarm_logo"
+        android:tint="@color/dodger_blue"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_no_alarms_yet_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_main_no_alarms_yet_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="@dimen/activity_main_no_alarms_yet_padding_start"
+        android:paddingEnd="@dimen/activity_main_no_alarms_yet_padding_end"
+        android:text="@string/activity_main_no_alarms_yet_text"
+        android:textColor="@color/vulcan"
+        android:textSize="@dimen/activity_main_no_alarms_yet_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/activity_main_add_alarm_button"
+        android:layout_width="@dimen/activity_main_add_alarm_button_width"
+        android:layout_height="@dimen/activity_main_add_alarm_button_height"
+        android:layout_marginBottom="@dimen/activity_main_add_alarm_button_margin_bottom"
+        android:background="@drawable/add_alarm_buttom_background"
+        android:src="@drawable/add_alarm_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

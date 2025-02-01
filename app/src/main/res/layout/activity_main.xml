@@ -29,7 +29,8 @@
         android:tint="@color/dodger_blue"
         app:layout_constraintBottom_toTopOf="@id/activity_main_no_alarms_yet_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UseAppTint" />
 
     <TextView
         android:id="@+id/activity_main_no_alarms_yet_text"

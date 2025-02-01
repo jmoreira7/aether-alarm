@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Snoozeloo" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/dodger_blue</item>
+        <item name="android:windowBackground">@color/wild_sand</item>
         <item name="android:textColorPrimary">@color/vulcan</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
         <item name="android:textSize">@dimen/base_theme_snoozelo_text_size</item>
@@ -16,6 +17,7 @@
     <style name="Theme.Snoozeloo.Splashscreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dodger_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/alarm_logo</item>
+        <item name="android:windowBackground">@color/wild_sand</item>
         <item name="postSplashScreenTheme">@style/Theme.Snoozeloo</item>
     </style>
 </resources>

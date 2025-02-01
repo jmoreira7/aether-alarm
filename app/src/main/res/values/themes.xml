@@ -13,10 +13,6 @@
         <item name="android:textSize">@dimen/theme_snoozeloo_title_text_size</item>
     </style>
 
-    <style name="Theme.Snoozeloo.AlarmItem" parent="Base.Theme.Snoozeloo">
-        <item name="android:fontFamily"></item>
-    </style>
-
     <style name="Theme.Snoozeloo.Splashscreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dodger_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/alarm_logo</item>

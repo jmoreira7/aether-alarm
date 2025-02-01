@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="328dp"
+    android:layout_height="138dp">
+
+    <TextView
+        android:id="@+id/alarm_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/alarm_item_title_margin_start"
+        android:layout_marginTop="@dimen/alarm_item_item_title_margin_top"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Wake Up" />
+
+
+    <TextView
+        android:id="@+id/alarm_item_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/alarm_item_hour_margin_start"
+        android:layout_marginTop="@dimen/alarm_item_hour_margin_top"
+        android:textSize="@dimen/alarm_item_hour_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alarm_item_title"
+        tools:text="10:00" />
+
+    <TextView
+        android:id="@+id/alarm_item_am_pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/alarm_item_am_pm_margin_start"
+        android:layout_marginBottom="@dimen/alarm_item_am_pm_margin_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/alarm_item_hour"
+        tools:text="AM" />
+
+    <TextView
+        android:id="@+id/alarm_item_time_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/alarm_item_time_remaining"
+        android:layout_marginTop="105dp"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Alarm in 5h 30 min" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/alarm_item_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/alarm_item_switch_margin_top"
+        android:layout_marginEnd="@dimen/alarm_item_switch_margin_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:thumbIcon="@drawable/alarm_switch_thumb"
+        app:thumbIconTint="@null"
+        app:thumbTint="@null"
+        app:trackDecorationTint="@color/dodger_blue"
+        app:trackTint="@color/dodger_blue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

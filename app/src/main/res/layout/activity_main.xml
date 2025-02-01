@@ -13,10 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_main_title_margin_start"
         android:layout_marginTop="@dimen/activity_main_title_margin_top"
-        android:fontFamily="@font/montserrat_regular"
         android:text="@string/activity_main_title"
-        android:textColor="@color/vulcan"
-        android:textSize="@dimen/activity_main_title_text_size"
+        android:theme="@style/Theme.Snoozeloo.Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +38,7 @@
         android:paddingStart="@dimen/activity_main_no_alarms_yet_padding_start"
         android:paddingEnd="@dimen/activity_main_no_alarms_yet_padding_end"
         android:text="@string/activity_main_no_alarms_yet_text"
-        android:textColor="@color/vulcan"
-        android:textSize="@dimen/activity_main_no_alarms_yet_text_size"
+        android:theme="@style/Theme.Snoozeloo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

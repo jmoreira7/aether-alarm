@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- themes.xml -->
+    <dimen name="base_theme_snoozelo_text_size">16sp</dimen>
+    <dimen name="theme_snoozeloo_title_text_size">24sp</dimen>
+
     <!-- activity_main.xml -->
     <dimen name="activity_main_title_margin_top">48dp</dimen>
     <dimen name="activity_main_title_margin_start">16dp</dimen>

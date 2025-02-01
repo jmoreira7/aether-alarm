@@ -1,11 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Snoozeloo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/dodger_blue</item>
+        <item name="android:textColorPrimary">@color/vulcan</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/base_theme_snoozelo_text_size</item>
     </style>
 
     <style name="Theme.Snoozeloo" parent="Base.Theme.Snoozeloo" />
+
+    <style name="Theme.Snoozeloo.Title" parent="Base.Theme.Snoozeloo">
+        <item name="android:textSize">@dimen/theme_snoozeloo_title_text_size</item>
+    </style>
+
+    <style name="Theme.Snoozeloo.AlarmItem" parent="Base.Theme.Snoozeloo">
+        <item name="android:fontFamily"></item>
+    </style>
 
     <style name="Theme.Snoozeloo.Splashscreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dodger_blue</item>

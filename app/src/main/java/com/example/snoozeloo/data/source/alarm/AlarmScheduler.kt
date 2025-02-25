@@ -1,4 +1,4 @@
-package com.example.snoozeloo.data.alarm
+package com.example.snoozeloo.data.source.alarm
 
 import android.app.AlarmManager
 import android.app.AlarmManager.AlarmClockInfo

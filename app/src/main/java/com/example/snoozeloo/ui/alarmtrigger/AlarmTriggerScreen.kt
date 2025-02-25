@@ -1,14 +1,12 @@
-package com.example.snoozeloo.presentation.activity
+package com.example.snoozeloo.ui.alarmtrigger
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.snoozeloo.R
 
-class AlarmTriggerActivity : AppCompatActivity() {
+class AlarmTriggerScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -1,8 +1,7 @@
-package com.example.snoozeloo.presentation.activity
+package com.example.snoozeloo.ui
 
 import android.app.AlarmManager
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -13,10 +12,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.snoozeloo.data.alarm.AlarmScheduler
+import com.example.snoozeloo.data.source.alarm.AlarmScheduler
 import com.example.snoozeloo.databinding.ActivityMainBinding
-import com.example.snoozeloo.presentation.receiver.AlarmReceiver
-import com.example.snoozeloo.presentation.viewmodel.MainViewModel
+import com.example.snoozeloo.ui.receiver.AlarmReceiver
 import kotlinx.coroutines.launch
 
 

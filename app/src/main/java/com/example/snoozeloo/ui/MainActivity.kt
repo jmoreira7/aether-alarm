@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.snoozeloo.data.source.androidapi.AlarmScheduler
 import com.example.snoozeloo.databinding.ActivityMainBinding
-import com.example.snoozeloo.ui.receiver.AlarmReceiver
+import com.example.snoozeloo.data.source.androidapi.AlarmReceiver
 import kotlinx.coroutines.launch
 
 

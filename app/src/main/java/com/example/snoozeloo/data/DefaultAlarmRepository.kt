@@ -1,28 +1,38 @@
 package com.example.snoozeloo.data
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.emptyFlow
 
 class DefaultAlarmRepository : AlarmRepository {
-    override fun setAlarm(alarm: Alarm) {
+    private val _alarmEvents = MutableSharedFlow<AlarmEvent>(replay = 0)
+    private val alarmEvents: Flow<AlarmEvent> = _alarmEvents
+
+    override suspend fun setAlarm(alarm: Alarm) {
         // ToDo
     }
 
-    override fun getAlarm(id: String): Alarm? {
+    override suspend fun getAlarm(id: String): Alarm? {
         // ToDo
         return null
     }
 
-    override fun updateAlarm(alarm: Alarm) {
+    override suspend fun updateAlarm(alarm: Alarm) {
         // ToDo
     }
 
-    override fun deleteAlarm(id: String) {
+    override suspend fun deleteAlarm(id: String) {
         // ToDo
     }
 
-    override fun listenAlarmsFlow(): Flow<List<Alarm>> {
+    override fun listenAlarms(): Flow<List<Alarm>> {
         // ToDo
         return emptyFlow()
+    }
+
+    override fun listenAlarmEvents(): Flow<AlarmEvent> = alarmEvents
+
+    suspend fun triggerAlarm() {
+        _alarmEvents.emit(AlarmEvent.Triggered)
     }
 }

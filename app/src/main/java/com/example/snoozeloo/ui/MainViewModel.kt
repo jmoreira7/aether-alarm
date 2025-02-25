@@ -2,7 +2,7 @@ package com.example.snoozeloo.ui
 
 import android.content.Intent
 import androidx.lifecycle.ViewModel
-import com.example.snoozeloo.data.source.alarm.AlarmScheduler
+import com.example.snoozeloo.data.source.androidapi.AlarmScheduler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

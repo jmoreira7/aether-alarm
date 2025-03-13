@@ -1,6 +1,6 @@
 package com.example.snoozeloo.data
 
-import com.example.snoozeloo.data.source.androidapi.AndroidAlarm
+import com.example.snoozeloo.data.source.platform.AndroidAlarm
 
 fun Alarm.toAndroidAlarm(): AndroidAlarm {
     return AndroidAlarm(

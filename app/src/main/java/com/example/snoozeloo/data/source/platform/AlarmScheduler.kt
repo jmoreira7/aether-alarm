@@ -1,4 +1,4 @@
-package com.example.snoozeloo.data.source.androidapi
+package com.example.snoozeloo.data.source.platform
 
 import android.app.AlarmManager
 import android.app.AlarmManager.AlarmClockInfo
@@ -11,6 +11,16 @@ class AlarmScheduler(
     private val context: Context,
     private val alarmManager: AlarmManager
 ) {
+    fun canScheduleExactAlarms(): Boolean {
+        if (alarmManager.canScheduleExactAlarms()) {
+            Log.i("AlarmScheduler", "Can schedule exact alarms.")
+            return true
+        }
+
+        Log.i("AlarmScheduler", "Cannot schedule exact alarms. Need to ask permission.")
+        return false
+    }
+
     fun scheduleAlarm(intent: Intent) {
         val pendingIntent = PendingIntent.getBroadcast(
             context,

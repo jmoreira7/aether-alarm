@@ -2,28 +2,50 @@ package com.example.snoozeloo.ui
 
 import android.content.Intent
 import androidx.lifecycle.ViewModel
-import com.example.snoozeloo.data.source.androidapi.AlarmScheduler
+import androidx.lifecycle.viewModelScope
+import com.example.snoozeloo.data.Alarm
+import com.example.snoozeloo.data.AlarmRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 data class MainUiState(
-    val dummyState: Boolean = false
+    val isRequestingAlarmPermission: Boolean = false
 )
 
-class MainViewModel : ViewModel() {
-
-    private var alarmScheduler: AlarmScheduler? = null
-
+class MainViewModel(
+    private val alarmRepository: AlarmRepository
+) : ViewModel() {
     private val _state = MutableStateFlow(MainUiState())
 
     val state: StateFlow<MainUiState> = _state.asStateFlow()
 
-    fun setAlarmScheduler(alarmScheduler: AlarmScheduler) {
-        this.alarmScheduler = alarmScheduler
+    init {
+        checkAlarmPermission()
     }
 
+    // Test. Need to improve
     fun scheduleAlarm(intent: Intent) {
-        alarmScheduler?.scheduleAlarm(intent)
+        viewModelScope.launch {
+            alarmRepository.setAlarm(
+                Alarm(
+                    time = 0,
+                    isActive = true,
+                    label = null
+                ), intent
+            )
+        }
+    }
+
+    fun checkAlarmPermission() {
+        if (!alarmRepository.canScheduleAlarm()) {
+            _state.update { it.copy(isRequestingAlarmPermission = true) }
+        }
+    }
+
+    fun isRequestingAlarmPermissionHandled() {
+        _state.update { it.copy(isRequestingAlarmPermission = false) }
     }
 }

@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".data.source.androidapi.AlarmReceiver" />
+        <receiver android:name=".data.source.platform.AlarmReceiver" />
     </application>
 
 </manifest>

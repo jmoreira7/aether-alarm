@@ -5,7 +5,6 @@ import com.example.snoozeloo.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import java.sql.Time
 
 data class CreateAlarmUiState(
     val hourInputField: TimeInputField? = null,
@@ -18,6 +17,10 @@ data class TimeInputField(
 )
 
 class CreateAlarmViewModel : ViewModel() {
+    private var isHourFocusedOnce = false
+
+    private var isMinuteFocusedOnce = false
+
     private val _state = MutableStateFlow(CreateAlarmUiState())
     val state = _state.asStateFlow()
 
@@ -25,18 +28,58 @@ class CreateAlarmViewModel : ViewModel() {
         _state.update { state ->
             state.copy(
                 hourInputField = TimeInputField(
-                    time = EMPTY_STRING,
+                    time = evaluateTimeInputField(
+                        isFocusedOnce = isHourFocusedOnce,
+                        currentTime = state.hourInputField?.time
+                    ),
                     color = R.color.dodger_blue
                 )
             )
         }
+        isHourFocusedOnce = true
     }
 
     fun minuteInputTextHasFocus() {
         _state.update { state ->
             state.copy(
                 minuteInputField = TimeInputField(
-                    time = EMPTY_STRING,
+                    time = evaluateTimeInputField(
+                        isFocusedOnce = isMinuteFocusedOnce,
+                        currentTime = state.minuteInputField?.time
+                    ),
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+        isMinuteFocusedOnce = true
+    }
+
+    private fun evaluateTimeInputField(isFocusedOnce: Boolean, currentTime: String?): String {
+        currentTime?.let {
+            if (isFocusedOnce) {
+                return it
+            }
+        }
+
+        return EMPTY_STRING
+    }
+
+    fun onHourInputTextChanged(hour: String) {
+        _state.update { state ->
+            state.copy(
+                hourInputField = TimeInputField(
+                    time = hour,
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+    }
+
+    fun onMinuteInputTextChanged(minute: String) {
+        _state.update { state ->
+            state.copy(
+                minuteInputField = TimeInputField(
+                    time = minute,
                     color = R.color.dodger_blue
                 )
             )

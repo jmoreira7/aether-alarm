@@ -2,9 +2,13 @@ package com.example.snoozeloo.ui.createalarm
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -54,6 +58,10 @@ class CreateAlarmActivity : AppCompatActivity() {
                     viewModel.hourInputTextHasFocus()
                 }
             }
+
+            addTextChangedListener { hour ->
+                viewModel.onHourInputTextChanged(hour.toString())
+            }
         }
     }
 
@@ -63,6 +71,10 @@ class CreateAlarmActivity : AppCompatActivity() {
                 if (hasFocus) {
                     viewModel.minuteInputTextHasFocus()
                 }
+            }
+
+            addTextChangedListener { minute ->
+                viewModel.onMinuteInputTextChanged(minute.toString())
             }
         }
     }
@@ -75,15 +87,23 @@ class CreateAlarmActivity : AppCompatActivity() {
 
     private fun handleHourInputText(hour: TimeInputField) {
         binding.activityCreateAlarmHourTextInput.run {
-            setText(hour.time)
             setTextColor(resources.getColor(hour.color, null))
+            if (text.toString() != hour.time) {
+                setText(hour.time)
+            }
         }
     }
 
     private fun handleMinuteInputText(minute: TimeInputField) {
         binding.activityCreateAlarmMinuteTextInput.run {
-            setText(minute.time)
             setTextColor(resources.getColor(minute.color, null))
+            if (text.toString() != minute.time) {
+                setText(minute.time)
+            }
         }
+    }
+
+    companion object {
+        private const val TAG = "CreateAlarmActivity"
     }
 }

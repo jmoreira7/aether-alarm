@@ -1,8 +1,8 @@
 package com.example.snoozeloo.di
 
 import android.app.AlarmManager
-import com.example.snoozeloo.data.AlarmRepository
-import com.example.snoozeloo.data.source.platform.AlarmScheduler
+import com.example.snoozeloo.domain.repository.AlarmRepository
+import com.example.snoozeloo.data.AlarmScheduler
 
 interface AppModule {
     val alarmRepository: AlarmRepository

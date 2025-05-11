@@ -12,7 +12,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.snoozeloo.data.source.platform.AlarmReceiver
+import com.example.snoozeloo.receiver.AlarmReceiver
 import com.example.snoozeloo.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 

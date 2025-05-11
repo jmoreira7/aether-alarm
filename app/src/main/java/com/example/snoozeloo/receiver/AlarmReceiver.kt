@@ -1,4 +1,4 @@
-package com.example.snoozeloo.data.source.platform
+package com.example.snoozeloo.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -17,10 +17,5 @@ class AlarmReceiver : BroadcastReceiver() {
 
             it.startActivity(newIntent)
         }
-
-        // Improve this code. Maybe use a callback to the repository.
-//        CoroutineScope(Dispatchers.IO).launch {
-//            (alarmRepository as DefaultAlarmRepository).triggerAlarm()
-//        }
     }
 }

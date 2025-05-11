@@ -3,8 +3,8 @@ package com.example.snoozeloo.ui
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.snoozeloo.data.Alarm
-import com.example.snoozeloo.data.AlarmRepository
+import com.example.snoozeloo.domain.entity.Alarm
+import com.example.snoozeloo.domain.repository.AlarmRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

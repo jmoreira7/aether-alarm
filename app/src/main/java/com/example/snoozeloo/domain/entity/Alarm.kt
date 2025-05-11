@@ -1,4 +1,4 @@
-package com.example.snoozeloo.data
+package com.example.snoozeloo.domain.entity
 
 import java.util.UUID
 

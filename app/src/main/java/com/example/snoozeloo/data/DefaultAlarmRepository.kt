@@ -9,7 +9,7 @@ class DefaultAlarmRepository(
     private val alarmScheduler: AlarmScheduler
 ) : AlarmRepository {
     override suspend fun setAlarm(alarm: Alarm) {
-        alarmScheduler.scheduleAlarm()
+        alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)
     }
 
     override suspend fun getAlarm(id: String): Alarm? {
@@ -21,8 +21,8 @@ class DefaultAlarmRepository(
         // ToDo
     }
 
-    override suspend fun deleteAlarm(id: String) {
-        // ToDo
+    override suspend fun deleteAlarm(alarm: Alarm) {
+        alarmScheduler.cancelAlarm(alarm.id)
     }
 
     override suspend fun listenAlarms(): Flow<List<Alarm>> {

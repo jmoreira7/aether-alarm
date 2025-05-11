@@ -6,12 +6,15 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.receiver.AlarmReceiver
 
 class AlarmScheduler(
     private val context: Context,
     private val alarmManager: AlarmManager
 ) {
+    private val receiverIntent = Intent(context, AlarmReceiver::class.java)
+
     fun canScheduleExactAlarms(): Boolean {
         if (alarmManager.canScheduleExactAlarms()) {
             Log.i(TAG, "Can schedule exact alarms.")
@@ -22,29 +25,36 @@ class AlarmScheduler(
         return false
     }
 
-    fun scheduleAlarm() {
-        val intent = Intent(context, AlarmReceiver::class.java)
-
+    fun scheduleAlarm(alarmId: Int, triggerTime: Long) {
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            0,
-            intent,
+            alarmId,
+            receiverIntent,
             PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val alarmInfo = AlarmClockInfo(
-            System.currentTimeMillis() + 10000,
-            pendingIntent
         )
 
         if (alarmManager.canScheduleExactAlarms()) {
             alarmManager.setAlarmClock(
-                alarmInfo,
+                AlarmClockInfo(
+                    triggerTime,
+                    pendingIntent
+                ),
                 pendingIntent
             )
         } else {
             Log.d(TAG, "Cannot schedule exact alarms")
         }
+    }
+
+    fun cancelAlarm(alarmId: Int) {
+        alarmManager.cancel(
+            PendingIntent.getBroadcast(
+                context,
+                alarmId,
+                receiverIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        )
     }
 
     companion object {

@@ -17,8 +17,16 @@
     <dimen name="activity_main_add_alarm_button_width">60dp</dimen>
     <dimen name="activity_main_add_alarm_button_height">60dp</dimen>
     <dimen name="activity_main_add_alarm_button_margin_bottom">50dp</dimen>
+    <dimen name="activity_main_alarm_list_height">454dp</dimen>
+    <dimen name="activity_main_alarm_list_margin_start">16dp</dimen>
+    <dimen name="activity_main_alarm_list_margin_top">24dp</dimen>
+    <dimen name="activity_main_alarm_list_margin_end">16dp</dimen>
+    <dimen name="activity_main_alarm_list_margin_bottom">24dp</dimen>
 
     <!-- alarm_item.xml -->
+    <dimen name="alarm_item_width">328dp</dimen>
+    <dimen name="alarm_item_height">138dp</dimen>
+    <dimen name="alarm_item_margin_bottom">16dp</dimen>
     <dimen name="alarm_item_title_margin_start">16dp</dimen>
     <dimen name="alarm_item_item_title_margin_top">16dp</dimen>
     <dimen name="alarm_item_hour_margin_start">16dp</dimen>

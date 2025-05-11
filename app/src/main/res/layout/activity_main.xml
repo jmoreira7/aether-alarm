@@ -54,4 +54,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_main_alarm_list"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/activity_main_alarm_list_height"
+        android:layout_marginStart="@dimen/activity_main_alarm_list_margin_start"
+        android:layout_marginTop="@dimen/activity_main_alarm_list_margin_top"
+        android:layout_marginEnd="@dimen/activity_main_alarm_list_margin_end"
+        android:layout_marginBottom="@dimen/activity_main_alarm_list_margin_bottom"
+        app:layout_constraintBottom_toTopOf="@id/activity_main_add_alarm_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_title"
+        app:layout_constraintVertical_bias="0"
+        tools:listitem="@layout/alarm_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

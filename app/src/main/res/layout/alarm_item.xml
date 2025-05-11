@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/alarm_item_background"
-    android:layout_width="328dp"
-    android:layout_height="138dp">
+    android:layout_width="@dimen/alarm_item_width"
+    android:layout_height="@dimen/alarm_item_height"
+    android:layout_marginBottom="@dimen/alarm_item_margin_bottom"
+    android:background="@drawable/alarm_item_background">
 
     <TextView
         android:id="@+id/alarm_item_title"

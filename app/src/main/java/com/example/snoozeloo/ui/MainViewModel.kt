@@ -1,6 +1,5 @@
 package com.example.snoozeloo.ui
 
-import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.snoozeloo.domain.entity.Alarm
@@ -27,14 +26,14 @@ class MainViewModel(
     }
 
     // Test. Need to improve
-    fun scheduleAlarm(intent: Intent) {
+    fun scheduleAlarm() {
         viewModelScope.launch {
             alarmRepository.setAlarm(
                 Alarm(
-                    time = 0,
+                    triggerTime = 0,
                     isActive = true,
                     label = null
-                ), intent
+                )
             )
         }
     }

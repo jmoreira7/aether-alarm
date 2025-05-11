@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.emptyFlow
 class DefaultAlarmRepository(
     private val alarmScheduler: AlarmScheduler
 ) : AlarmRepository {
-    override suspend fun setAlarm(alarm: Alarm, intent: Intent) {
-        alarmScheduler.scheduleAlarm(intent)
+    override suspend fun setAlarm(alarm: Alarm) {
+        alarmScheduler.scheduleAlarm()
     }
 
     override suspend fun getAlarm(id: String): Alarm? {

@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.example.snoozeloo.receiver.AlarmReceiver
 
 class AlarmScheduler(
     private val context: Context,
@@ -13,15 +14,17 @@ class AlarmScheduler(
 ) {
     fun canScheduleExactAlarms(): Boolean {
         if (alarmManager.canScheduleExactAlarms()) {
-            Log.i("AlarmScheduler", "Can schedule exact alarms.")
+            Log.i(TAG, "Can schedule exact alarms.")
             return true
         }
 
-        Log.i("AlarmScheduler", "Cannot schedule exact alarms. Need to ask permission.")
+        Log.i(TAG, "Cannot schedule exact alarms. Need to ask permission.")
         return false
     }
 
-    fun scheduleAlarm(intent: Intent) {
+    fun scheduleAlarm() {
+        val intent = Intent(context, AlarmReceiver::class.java)
+
         val pendingIntent = PendingIntent.getBroadcast(
             context,
             0,
@@ -40,7 +43,11 @@ class AlarmScheduler(
                 pendingIntent
             )
         } else {
-            Log.d("AlarmScheduler", "Cannot schedule exact alarms")
+            Log.d(TAG, "Cannot schedule exact alarms")
         }
+    }
+
+    companion object {
+        private const val TAG = "AlarmScheduler"
     }
 }

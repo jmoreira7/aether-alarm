@@ -4,13 +4,13 @@ import com.example.snoozeloo.domain.entity.Alarm
 
 fun Alarm.toAndroidAlarm(): AndroidAlarm {
     return AndroidAlarm(
-        time = time,
+        time = triggerTime,
     )
 }
 
 fun AndroidAlarm.toExternal(): Alarm {
     return Alarm(
-        time = time,
+        triggerTime = time,
         isActive = true,
         label = null,
     )

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         // Test
         val intent = Intent(this, AlarmReceiver::class.java)
-        viewModel.scheduleAlarm(intent)
+        viewModel.scheduleAlarm()
     }
 
     private fun setupViewModel() {

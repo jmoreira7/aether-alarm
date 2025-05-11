@@ -5,7 +5,7 @@ import com.example.snoozeloo.domain.entity.Alarm
 import kotlinx.coroutines.flow.Flow
 
 interface AlarmRepository {
-    suspend fun setAlarm(alarm: Alarm, intent: Intent)
+    suspend fun setAlarm(alarm: Alarm)
 
     suspend fun getAlarm(id: String): Alarm?
 

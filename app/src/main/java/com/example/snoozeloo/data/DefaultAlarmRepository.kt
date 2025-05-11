@@ -27,10 +27,10 @@ class DefaultAlarmRepository(
         // ToDo
     }
 
-    override fun listenAlarms(): Flow<List<Alarm>> {
+    override suspend fun listenAlarms(): Flow<List<Alarm>> {
         // ToDo
         return emptyFlow()
     }
 
-    override fun canScheduleAlarm(): Boolean = alarmScheduler.canScheduleExactAlarms()
+    override suspend fun canScheduleAlarm(): Boolean = alarmScheduler.canScheduleExactAlarms()
 }

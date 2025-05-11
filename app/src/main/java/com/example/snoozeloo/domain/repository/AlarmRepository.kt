@@ -13,7 +13,7 @@ interface AlarmRepository {
 
     suspend fun deleteAlarm(id: String)
 
-    fun listenAlarms(): Flow<List<Alarm>>
+    suspend fun listenAlarms(): Flow<List<Alarm>>
 
-    fun canScheduleAlarm(): Boolean
+    suspend fun canScheduleAlarm(): Boolean
 }

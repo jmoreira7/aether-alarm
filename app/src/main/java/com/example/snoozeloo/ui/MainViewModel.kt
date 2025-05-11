@@ -44,8 +44,10 @@ class MainViewModel(
     }
 
     private fun checkAlarmPermission() {
-        if (!alarmRepository.canScheduleAlarm()) {
-            sendRouteEvent(Router.AlarmPermission)
+        viewModelScope.launch {
+            if (!alarmRepository.canScheduleAlarm()) {
+                sendRouteEvent(Router.AlarmPermission)
+            }
         }
     }
 

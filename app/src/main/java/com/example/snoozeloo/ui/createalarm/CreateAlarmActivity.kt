@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 class CreateAlarmActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateAlarmBinding
 
-    private val viewModel: CreateAlarmViewModel by viewModels()
+    private val viewModel: CreateAlarmViewModel by viewModels {
+        CreateAlarmViewModelFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +78,10 @@ class CreateAlarmActivity : AppCompatActivity() {
     private fun setupButtons() {
         binding.activityCreateAlarmBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.activityCreateAlarmSaveButton.setOnClickListener {
+            viewModel.saveAlarm()
         }
 
         binding.activityCreateAlarmSecondaryTile.setOnClickListener {

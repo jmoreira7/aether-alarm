@@ -1,10 +1,6 @@
 package com.example.snoozeloo.ui.createalarm
 
-import android.content.res.Resources
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.snoozeloo.R
 import com.example.snoozeloo.databinding.ActivityCreateAlarmBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class CreateAlarmActivity : AppCompatActivity() {
@@ -82,6 +76,10 @@ class CreateAlarmActivity : AppCompatActivity() {
     private fun setupButtons() {
         binding.activityCreateAlarmBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.activityCreateAlarmSecondaryTile.setOnClickListener {
+            // ToDo
         }
     }
 

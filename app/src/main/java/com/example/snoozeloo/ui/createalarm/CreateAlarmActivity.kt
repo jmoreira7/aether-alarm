@@ -31,6 +31,7 @@ class CreateAlarmActivity : AppCompatActivity() {
     private fun setupViews() {
         setupHourTextInputView()
         setupMinuteTextInputView()
+        setupButtons()
     }
 
     private fun setupViewModel() {
@@ -63,6 +64,12 @@ class CreateAlarmActivity : AppCompatActivity() {
                     viewModel.minuteInputTextHasFocus()
                 }
             }
+        }
+    }
+
+    private fun setupButtons() {
+        binding.activityCreateAlarmBackButton.setOnClickListener {
+            finish()
         }
     }
 

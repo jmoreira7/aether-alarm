@@ -3,7 +3,6 @@ package com.example.snoozeloo.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.domain.repository.AlarmRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,19 +27,6 @@ class MainViewModel(
     init {
         Log.d("MainViewModel", "init")
         checkAlarmPermission()
-    }
-
-    // Test. Need to improve
-    fun scheduleAlarm() {
-        viewModelScope.launch {
-            alarmRepository.setAlarm(
-                Alarm(
-                    triggerTime = 0,
-                    isActive = true,
-                    label = null
-                )
-            )
-        }
     }
 
     private fun checkAlarmPermission() {

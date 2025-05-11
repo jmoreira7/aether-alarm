@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewModel()
-
-        viewModel.scheduleAlarm()
     }
 
     private fun setupViewModel() {

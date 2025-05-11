@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
+                android:maxLength="2"
                 android:padding="@dimen/activity_create_alarm_hour_text_input_padding"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/activity_create_alarm_hour_text_input_text_size"
@@ -61,6 +62,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
+                android:maxLength="2"
                 android:padding="@dimen/activity_create_alarm_minute_text_input_padding"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/activity_create_alarm_minute_text_input_text_size"
@@ -141,6 +143,6 @@
         app:layout_constraintBottom_toTopOf="@id/activity_create_alarm_main_tile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:enabled="false"/>
+        tools:enabled="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

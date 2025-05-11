@@ -3,7 +3,7 @@ package com.example.snoozeloo.data
 import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.domain.repository.AlarmRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.map
 
 class DefaultAlarmRepository(
     private val alarmScheduler: AlarmScheduler,
@@ -11,6 +11,7 @@ class DefaultAlarmRepository(
 ) : AlarmRepository {
     override suspend fun setAlarm(alarm: Alarm) {
         alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)
+        alarmDao.insertAlarm(alarm)
     }
 
     override suspend fun getAlarm(id: String): Alarm? {
@@ -19,16 +20,25 @@ class DefaultAlarmRepository(
     }
 
     override suspend fun updateAlarm(alarm: Alarm) {
-        // ToDo
+        alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)
+        alarmDao.updateAlarm(alarm)
     }
 
     override suspend fun deleteAlarm(alarm: Alarm) {
         alarmScheduler.cancelAlarm(alarm.id)
+        alarmDao.deleteAlarm(alarm)
     }
 
     override suspend fun listenAlarms(): Flow<List<Alarm>> {
-        // ToDo
-        return emptyFlow()
+        return alarmDao.getAllAlarms().map { alarms ->
+            alarms.map { alarm ->
+                Alarm(
+                    id = alarm.id,
+                    triggerTime = alarm.triggerTime,
+                    name = alarm.name
+                )
+            }
+        }
     }
 
     override suspend fun canScheduleAlarm(): Boolean = alarmScheduler.canScheduleExactAlarms()

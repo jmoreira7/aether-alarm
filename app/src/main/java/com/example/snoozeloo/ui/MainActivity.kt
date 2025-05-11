@@ -12,9 +12,11 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.snoozeloo.receiver.AlarmReceiver
 import com.example.snoozeloo.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,20 +29,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MainActivity", "onCreate called")
-
         installSplashScreen()
-
         enableEdgeToEdge()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         setupViewModel()
 
-        // Test
-        val intent = Intent(this, AlarmReceiver::class.java)
         viewModel.scheduleAlarm()
     }
 
@@ -48,26 +44,52 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
-                    handleIsRequestingAlarmPermission(it.isRequestingAlarmPermission)
+                    // ToDo
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                withContext(Dispatchers.Main.immediate) {
+                    viewModel.router.collect { route ->
+                        Log.d(TAG, "Route: $route")
+                        handleRoute(route)
+                    }
                 }
             }
         }
     }
 
-    private fun handleIsRequestingAlarmPermission(isRequestingAlarmPermission: Boolean) {
-        if (isRequestingAlarmPermission) {
-            Log.i("MainActivity", "Requesting alarm permission")
+    private fun handleRoute(route: Router) {
+        when (route) {
+            Router.AlarmPermission -> {
+                notifyRequestForPermission()
+                launchPermissionSettings()
+            }
+        }
+    }
 
-            viewModel.isRequestingAlarmPermissionHandled()
+    private fun notifyRequestForPermission() {
+        lifecycleScope.launch {
+            delay(500L)
+            Toast.makeText(
+                this@MainActivity,
+                REQUEST_ALARM_PERMISSION_TEXT,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 
-            Toast.makeText(this, REQUEST_ALARM_PERMISSION_TEXT, Toast.LENGTH_SHORT).show()
-
-            intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
-            startActivity(intent)
+    private fun launchPermissionSettings() {
+        Log.i(TAG, "Requesting alarm permission")
+        Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).also {
+            startActivity(it)
         }
     }
 
     companion object {
+        private const val TAG = "MainActivity"
         private const val REQUEST_ALARM_PERMISSION_TEXT =
             "Please grant permission to schedule exact alarms"
     }

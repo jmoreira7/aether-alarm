@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Snoozeloo.Splashscreen" >
         <activity
-            android:name=".ui.alarmtrigger.AlarmTriggerScreen"
+            android:name=".ui.alarmtrigger.AlarmTriggerActivity"
             android:theme="@style/Base.Theme.Snoozeloo"
             android:exported="false" />
         <activity

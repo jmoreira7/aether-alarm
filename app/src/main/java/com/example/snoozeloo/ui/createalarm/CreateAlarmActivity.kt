@@ -102,8 +102,4 @@ class CreateAlarmActivity : AppCompatActivity() {
             }
         }
     }
-
-    companion object {
-        private const val TAG = "CreateAlarmActivity"
-    }
 }

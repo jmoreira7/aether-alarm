@@ -25,7 +25,6 @@ class MainViewModel(
     val router = _router.receiveAsFlow()
 
     init {
-        Log.d("MainViewModel", "init")
         checkAlarmPermission()
     }
 

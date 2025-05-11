@@ -4,4 +4,9 @@
     <!-- activity_main.xml -->
     <string name="activity_main_title">Your Alarms</string>
     <string name="activity_main_no_alarms_yet_text">It\'s empty! Add the first alarm so you don\'t miss an important moment!</string>
+
+    <!-- activity_create_alarm.xml -->
+    <string name="activity_create_alarm_back_button_text">X</string>
+    <string name="activity_create_alarm_save_button_text">Save</string>
+    <string name="activity_create_alarm_name_label_text">Alarm Name</string>
 </resources>

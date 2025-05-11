@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snoozeloo.databinding.ActivityMainBinding
+import com.example.snoozeloo.ui.createalarm.CreateAlarmActivity
 import com.example.snoozeloo.ui.vo.UiAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -22,7 +23,6 @@ import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: MainViewModel by viewModels {
@@ -33,12 +33,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupAlarmsListRecyclerView()
+        setupViews()
         setupViewModel()
+    }
+
+    private fun setupViews() {
+        setupAlarmsListRecyclerView()
+        setupButtons()
     }
 
     private fun setupAlarmsListRecyclerView() {
@@ -113,6 +117,14 @@ class MainActivity : AppCompatActivity() {
             )
 
             adapter = AlarmAdapter(alarms)
+        }
+    }
+
+    private fun setupButtons() {
+        binding.activityMainAddAlarmButton.setOnClickListener {
+            Intent(this, CreateAlarmActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 

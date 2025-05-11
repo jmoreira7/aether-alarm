@@ -36,4 +36,31 @@
     <dimen name="alarm_item_time_remaining">16dp</dimen>
     <dimen name="alarm_item_switch_margin_top">8dp</dimen>
     <dimen name="alarm_item_switch_margin_end">16dp</dimen>
+
+    <!-- activity_create_alarm.xml -->
+    <dimen name="activity_create_alarm_main_tile_height">143dp</dimen>
+    <dimen name="activity_create_alarm_main_tile_margin">16dp</dimen>
+    <dimen name="activity_create_alarm_hour_container_width">128dp</dimen>
+    <dimen name="activity_create_alarm_hour_container_height">95dp</dimen>
+    <dimen name="activity_create_alarm_hour_container_margin_top">24dp</dimen>
+    <dimen name="activity_create_alarm_hour_text_input_padding">1dp</dimen>
+    <dimen name="activity_create_alarm_hour_text_input_text_size">52sp</dimen>
+    <dimen name="activity_create_alarm_minute_container_width">128dp</dimen>
+    <dimen name="activity_create_alarm_minute_container_height">95dp</dimen>
+    <dimen name="activity_create_alarm_minute_container_margin_top">24dp</dimen>
+    <dimen name="activity_create_alarm_minute_text_input_padding">1dp</dimen>
+    <dimen name="activity_create_alarm_minute_text_input_text_size">52sp</dimen>
+    <dimen name="activity_create_alarm_secondary_tile_height">52dp</dimen>
+    <dimen name="activity_create_alarm_secondary_tile_margin">16dp</dimen>
+    <dimen name="activity_create_alarm_name_label_margin_start">16dp</dimen>
+    <dimen name="activity_create_alarm_name_margin_end">16dp</dimen>
+    <dimen name="activity_create_alarm_back_button_width">32dp</dimen>
+    <dimen name="activity_create_alarm_back_button_height">32dp</dimen>
+    <dimen name="activity_create_alarm_back_button_margin_start">16dp</dimen>
+    <dimen name="activity_create_alarm_back_button_padding">1dp</dimen>
+    <dimen name="activity_create_alarm_save_button_width">71dp</dimen>
+    <dimen name="activity_create_alarm_save_button_height">32dp</dimen>
+    <dimen name="activity_create_alarm_save_button_margin_end">16dp</dimen>
+    <dimen name="activity_create_alarm_save_button_padding">1dp</dimen>
+    <dimen name="activity_create_alarm_save_button_text_size">16sp</dimen>
 </resources>

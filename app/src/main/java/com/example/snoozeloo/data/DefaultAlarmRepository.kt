@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
 class DefaultAlarmRepository(
-    private val alarmScheduler: AlarmScheduler
+    private val alarmScheduler: AlarmScheduler,
+    private val alarmDao: AlarmDao
 ) : AlarmRepository {
     override suspend fun setAlarm(alarm: Alarm) {
         alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)

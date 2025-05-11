@@ -12,7 +12,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snoozeloo.databinding.ActivityMainBinding
+import com.example.snoozeloo.ui.vo.UiAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,7 +37,83 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupAlarmsListRecyclerView()
         setupViewModel()
+    }
+
+    private fun setupAlarmsListRecyclerView() {
+        binding.activityMainAlarmList.run {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+
+            //Mock data
+            val alarms = listOf(
+                UiAlarm(
+                    name = "Alarm 1",
+                    hour = "08",
+                    minute = "00",
+                    amPm = "AM",
+                    timeRemaining = "1 hour 30 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 2",
+                    hour = "09",
+                    minute = "10",
+                    amPm = "AM",
+                    timeRemaining = "2 hours 20 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 3",
+                    hour = "10",
+                    minute = "35",
+                    amPm = "PM",
+                    timeRemaining = "3 hours 45 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 1",
+                    hour = "08",
+                    minute = "00",
+                    amPm = "AM",
+                    timeRemaining = "1 hour 30 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 2",
+                    hour = "09",
+                    minute = "10",
+                    amPm = "AM",
+                    timeRemaining = "2 hours 20 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 3",
+                    hour = "10",
+                    minute = "35",
+                    amPm = "PM",
+                    timeRemaining = "3 hours 45 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 1",
+                    hour = "08",
+                    minute = "00",
+                    amPm = "AM",
+                    timeRemaining = "1 hour 30 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 2",
+                    hour = "09",
+                    minute = "10",
+                    amPm = "AM",
+                    timeRemaining = "2 hours 20 minutes"
+                ),
+                UiAlarm(
+                    name = "Alarm 3",
+                    hour = "10",
+                    minute = "35",
+                    amPm = "PM",
+                    timeRemaining = "3 hours 45 minutes"
+                )
+            )
+
+            adapter = AlarmAdapter(alarms)
+        }
     }
 
     private fun setupViewModel() {

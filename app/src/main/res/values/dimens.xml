@@ -17,7 +17,6 @@
     <dimen name="activity_main_add_alarm_button_width">60dp</dimen>
     <dimen name="activity_main_add_alarm_button_height">60dp</dimen>
     <dimen name="activity_main_add_alarm_button_margin_bottom">50dp</dimen>
-    <dimen name="activity_main_alarm_list_height">454dp</dimen>
     <dimen name="activity_main_alarm_list_margin_start">16dp</dimen>
     <dimen name="activity_main_alarm_list_margin_top">24dp</dimen>
     <dimen name="activity_main_alarm_list_margin_end">16dp</dimen>

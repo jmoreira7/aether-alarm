@@ -85,7 +85,7 @@ class CreateAlarmActivity : AppCompatActivity() {
         }
 
         binding.activityCreateAlarmSecondaryTile.setOnClickListener {
-            // ToDo
+            AlarmNameDialog().show(supportFragmentManager, "AlarmNameDialog")
         }
     }
 

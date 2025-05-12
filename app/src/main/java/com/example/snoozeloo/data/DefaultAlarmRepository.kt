@@ -35,7 +35,8 @@ class DefaultAlarmRepository(
                 Alarm(
                     id = alarm.id,
                     triggerTime = alarm.triggerTime,
-                    name = alarm.name
+                    name = alarm.name,
+                    isEnabled = alarm.isEnabled
                 )
             }
         }

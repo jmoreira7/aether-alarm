@@ -63,4 +63,16 @@
     <dimen name="activity_create_alarm_save_button_margin_end">16dp</dimen>
     <dimen name="activity_create_alarm_save_button_padding">1dp</dimen>
     <dimen name="activity_create_alarm_save_button_text_size">16sp</dimen>
+
+    <!-- alarm_name_dialog_text_input.xml -->
+    <dimen name="alarm_name_dialog_text_input_width">296dp</dimen>
+    <dimen name="activity_create_alarm_name_text_input_layout_margin_start">16dp</dimen>
+    <dimen name="activity_create_alarm_name_text_input_layout_margin_top">8dp</dimen>
+    <dimen name="activity_create_alarm_name_text_input_layout_margin_end">16dp</dimen>
+    <dimen name="activity_create_alarm_name_text_input_field_text_size">14sp</dimen>
+
+    <!-- alarm_name_dialog_title.xml -->
+    <dimen name="alarm_name_dialog_title_text_margin_start">16dp</dimen>
+    <dimen name="alarm_name_dialog_title_text_margin_top">16dp</dimen>
+    <dimen name="alarm_name_dialog_title_text_size">16sp</dimen>
 </resources>

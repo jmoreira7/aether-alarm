@@ -11,4 +11,10 @@
     <string name="activity_create_alarm_name_label_text">Alarm Name</string>
     <string name="activity_create_alarm_minute_text_input_text">00</string>
     <string name="activity_create_alarm_hour_text_input_text">00</string>
+
+    <!-- alarm_name_dialog_text_input.xml -->
+    <string name="alarm_name_dialog_button_text">Save</string>
+
+    <!-- alarm_name_dialog_title.xml -->
+    <string name="alarm_name_dialog_title_text">Alarm Name</string>
 </resources>

@@ -70,7 +70,8 @@ class CreateAlarmViewModel(
             alarmRepository.setAlarm(
                 Alarm(
                     triggerTime = timeInMillis,
-                    name = "Alarm"
+                    name = "Alarm",
+                    isEnabled = true
                 )
             )
         }

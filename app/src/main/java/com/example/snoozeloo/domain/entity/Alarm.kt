@@ -10,4 +10,5 @@ data class Alarm(
     val id: Int = UUID.randomUUID().hashCode(),
     val triggerTime: Long,
     val name: String,
+    val isEnabled: Boolean
 )

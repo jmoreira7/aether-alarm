@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
+            android:maxLength="25"
             android:textColor="@color/black"
             android:textSize="@dimen/activity_create_alarm_name_text_input_field_text_size"
             tools:text="Work" />

@@ -41,6 +41,7 @@ class CreateAlarmActivity : AppCompatActivity() {
                     state.run {
                         hourInputField?.let { handleHourInputText(it) }
                         minuteInputField?.let { handleMinuteInputText(it) }
+                        handleDialogState(isAlarmDialogOpen)
                         handleAlarmNameText(alarmName)
                     }
                 }
@@ -86,6 +87,7 @@ class CreateAlarmActivity : AppCompatActivity() {
         }
 
         binding.activityCreateAlarmSecondaryTile.setOnClickListener {
+            viewModel.onAlarmNameDialogOpened()
             AlarmNameDialog().show(supportFragmentManager, "AlarmNameDialog")
         }
     }
@@ -105,6 +107,16 @@ class CreateAlarmActivity : AppCompatActivity() {
             if (text.toString() != minute.time) {
                 setText(minute.time)
             }
+        }
+    }
+
+    private fun handleDialogState(isDialogOpen: Boolean) {
+        if (isDialogOpen) {
+            binding.activityCreateAlarmHourTextInput.isEnabled = false
+            binding.activityCreateAlarmMinuteTextInput.isEnabled = false
+        } else {
+            binding.activityCreateAlarmHourTextInput.isEnabled = true
+            binding.activityCreateAlarmMinuteTextInput.isEnabled = true
         }
     }
 

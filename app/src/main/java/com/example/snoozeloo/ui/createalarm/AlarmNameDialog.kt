@@ -15,13 +15,14 @@ class AlarmNameDialog : DialogFragment() {
     private lateinit var alarmTitleBinding: AlarmNameDialogTitleBinding
     private lateinit var alarmNameInputBinding: AlarmNameDialogTextInputBinding
     private lateinit var alarmNameDialogTextInputField: TextInputEditText
+    private lateinit var dialog: Dialog
 
     private val viewModel: CreateAlarmViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         bindViews()
 
-        return MaterialAlertDialogBuilder(requireContext())
+        dialog = MaterialAlertDialogBuilder(requireContext())
             .setBackground(
                 ResourcesCompat.getDrawable(
                     resources,
@@ -35,6 +36,13 @@ class AlarmNameDialog : DialogFragment() {
                 handleSaveButtonEvent()
             }
             .create()
+
+        return dialog
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupViews()
     }
 
     private fun bindViews() {
@@ -43,6 +51,13 @@ class AlarmNameDialog : DialogFragment() {
         alarmNameInputBinding = AlarmNameDialogTextInputBinding.inflate(layoutInflater).apply {
             alarmNameDialogTextInputField = this.alarmNameTextInputField
         }
+    }
+
+    private fun setupViews() {
+        dialog.setOnDismissListener {
+            viewModel.onAlarmNameDialogDismissed()
+        }
+        alarmNameDialogTextInputField.requestFocus()
     }
 
     private fun handleSaveButtonEvent() {

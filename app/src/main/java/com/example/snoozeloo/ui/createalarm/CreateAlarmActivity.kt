@@ -84,6 +84,7 @@ class CreateAlarmActivity : AppCompatActivity() {
 
         binding.activityCreateAlarmSaveButton.setOnClickListener {
             viewModel.saveAlarmButtonClicked()
+            finish()
         }
 
         binding.activityCreateAlarmSecondaryTile.setOnClickListener {

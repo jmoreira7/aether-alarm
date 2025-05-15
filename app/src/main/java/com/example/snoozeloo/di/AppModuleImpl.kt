@@ -4,9 +4,9 @@ import android.app.AlarmManager
 import android.content.Context
 import androidx.room.Room
 import com.example.snoozeloo.data.AlarmDatabase
-import com.example.snoozeloo.domain.repository.AlarmRepository
-import com.example.snoozeloo.data.DefaultAlarmRepository
 import com.example.snoozeloo.data.AlarmScheduler
+import com.example.snoozeloo.data.DefaultAlarmRepository
+import com.example.snoozeloo.domain.repository.AlarmRepository
 
 class AppModuleImpl(
     private val appContext: Context
@@ -28,6 +28,8 @@ class AppModuleImpl(
             context = appContext,
             klass = AlarmDatabase::class.java,
             "alarm_database"
-        ).build()
+        )
+            .fallbackToDestructiveMigration(false)
+            .build()
     }
 }

@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 
 data class CreateAlarmUiState(
     val hourInputField: TimeInputField? = null,
-    val minuteInputField: TimeInputField? = null
+    val minuteInputField: TimeInputField? = null,
+    val alarmName: String = "",
 )
 
 data class TimeInputField(
@@ -129,6 +130,12 @@ class CreateAlarmViewModel(
                     color = R.color.dodger_blue
                 )
             )
+        }
+    }
+
+    fun onAlarmNameDialogSaveButtonClicked(alarmName: String) {
+        _state.update { state ->
+            state.copy(alarmName = alarmName)
         }
     }
 

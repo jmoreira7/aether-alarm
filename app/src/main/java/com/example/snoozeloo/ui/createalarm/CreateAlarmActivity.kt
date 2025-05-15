@@ -41,6 +41,7 @@ class CreateAlarmActivity : AppCompatActivity() {
                     state.run {
                         hourInputField?.let { handleHourInputText(it) }
                         minuteInputField?.let { handleMinuteInputText(it) }
+                        handleAlarmNameText(alarmName)
                     }
                 }
             }
@@ -105,5 +106,9 @@ class CreateAlarmActivity : AppCompatActivity() {
                 setText(minute.time)
             }
         }
+    }
+
+    private fun handleAlarmNameText(alarmName: String) {
+        binding.activityCreateAlarmName.text = alarmName
     }
 }

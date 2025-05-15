@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activity_create_alarm_name_text_input_layout"
+        android:id="@+id/alarm_name_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_create_alarm_name_text_input_layout_margin_start"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_create_alarm_name_text_input_field"
+            android:id="@+id/alarm_name_text_input_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"

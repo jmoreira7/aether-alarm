@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -118,6 +119,9 @@ class MainActivity : AppCompatActivity() {
 
             adapter = AlarmAdapter(alarms)
         }
+
+        binding.activityMainNoAlarmsYetAlarmLogo.isVisible = false // ToDo
+        binding.activityMainNoAlarmsYetText.isVisible = false // ToDo
     }
 
     private fun setupButtons() {

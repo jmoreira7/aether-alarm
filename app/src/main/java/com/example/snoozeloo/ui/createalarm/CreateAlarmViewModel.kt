@@ -63,7 +63,7 @@ class CreateAlarmViewModel(
         isMinuteFocusedOnce = true
     }
 
-    fun saveAlarm() {
+    fun saveAlarmButtonClicked() {
         viewModelScope.launch {
             val timeInMillis = getTimeInMillis()
 
@@ -76,6 +76,46 @@ class CreateAlarmViewModel(
                     isEnabled = true
                 )
             )
+        }
+    }
+
+    fun onHourInputTextChanged(hour: String) {
+        _state.update { state ->
+            state.copy(
+                hourInputField = TimeInputField(
+                    time = hour,
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+    }
+
+    fun onMinuteInputTextChanged(minute: String) {
+        _state.update { state ->
+            state.copy(
+                minuteInputField = TimeInputField(
+                    time = minute,
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+    }
+
+    fun alarmNameDialogOpened() {
+        _state.update { state ->
+            state.copy(isAlarmDialogOpen = true)
+        }
+    }
+
+    fun alarmNameDialogDismissed() {
+        _state.update { state ->
+            state.copy(isAlarmDialogOpen = false)
+        }
+    }
+
+    fun alarmNameDialogSaveButtonClicked(alarmName: String) {
+        _state.update { state ->
+            state.copy(alarmName = alarmName)
         }
     }
 
@@ -110,46 +150,6 @@ class CreateAlarmViewModel(
         }
 
         return EMPTY_STRING
-    }
-
-    fun onHourInputTextChanged(hour: String) {
-        _state.update { state ->
-            state.copy(
-                hourInputField = TimeInputField(
-                    time = hour,
-                    color = R.color.dodger_blue
-                )
-            )
-        }
-    }
-
-    fun onMinuteInputTextChanged(minute: String) {
-        _state.update { state ->
-            state.copy(
-                minuteInputField = TimeInputField(
-                    time = minute,
-                    color = R.color.dodger_blue
-                )
-            )
-        }
-    }
-
-    fun onAlarmNameDialogOpened() {
-        _state.update { state ->
-            state.copy(isAlarmDialogOpen = true)
-        }
-    }
-
-    fun onAlarmNameDialogDismissed() {
-        _state.update { state ->
-            state.copy(isAlarmDialogOpen = false)
-        }
-    }
-
-    fun onAlarmNameDialogSaveButtonClicked(alarmName: String) {
-        _state.update { state ->
-            state.copy(alarmName = alarmName)
-        }
     }
 
     companion object {

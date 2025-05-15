@@ -83,11 +83,11 @@ class CreateAlarmActivity : AppCompatActivity() {
         }
 
         binding.activityCreateAlarmSaveButton.setOnClickListener {
-            viewModel.saveAlarm()
+            viewModel.saveAlarmButtonClicked()
         }
 
         binding.activityCreateAlarmSecondaryTile.setOnClickListener {
-            viewModel.onAlarmNameDialogOpened()
+            viewModel.alarmNameDialogOpened()
             AlarmNameDialog().show(supportFragmentManager, "AlarmNameDialog")
         }
     }

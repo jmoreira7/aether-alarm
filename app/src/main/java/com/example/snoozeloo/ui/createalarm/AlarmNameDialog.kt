@@ -55,12 +55,12 @@ class AlarmNameDialog : DialogFragment() {
 
     private fun setupViews() {
         dialog.setOnDismissListener {
-            viewModel.onAlarmNameDialogDismissed()
+            viewModel.alarmNameDialogDismissed()
         }
         alarmNameDialogTextInputField.requestFocus()
     }
 
     private fun handleSaveButtonEvent() {
-        viewModel.onAlarmNameDialogSaveButtonClicked(alarmNameDialogTextInputField.text.toString())
+        viewModel.alarmNameDialogSaveButtonClicked(alarmNameDialogTextInputField.text.toString())
     }
 }

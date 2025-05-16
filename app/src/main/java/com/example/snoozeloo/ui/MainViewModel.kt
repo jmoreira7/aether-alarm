@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.snoozeloo.domain.repository.AlarmRepository
 import com.example.snoozeloo.ui.vo.UiAlarm
+import com.example.snoozeloo.ui.vo.toUiAlarm
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

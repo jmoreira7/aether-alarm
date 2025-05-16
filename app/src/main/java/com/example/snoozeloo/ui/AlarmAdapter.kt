@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.snoozeloo.R
 import com.example.snoozeloo.ui.vo.UiAlarm
 
-class AlarmAdapter(private val alarms: List<UiAlarm>) : RecyclerView.Adapter<AlarmViewHolder>() {
+class AlarmAdapter : RecyclerView.Adapter<AlarmViewHolder>() {
+    private var alarms: List<UiAlarm> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.alarm_item, parent, false)
         return AlarmViewHolder(view)
@@ -20,7 +22,13 @@ class AlarmAdapter(private val alarms: List<UiAlarm>) : RecyclerView.Adapter<Ala
         val alarm = alarms[position]
         holder.title.text = alarm.name
         holder.time.text = "${alarm.hour}:${alarm.minute}"
-        holder.amPm.text = alarm.amPm
+        holder.amPm.text = alarm.amPm.toText()
         holder.timeRemaining.text = "Alarm in ${alarm.timeRemaining}"
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setAlarmItems(alarmItems: List<UiAlarm>) {
+        alarms = alarmItems
+        notifyDataSetChanged()
     }
 }

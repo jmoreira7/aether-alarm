@@ -1,18 +1,19 @@
 package com.example.snoozeloo.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.snoozeloo.domain.repository.AlarmRepository
+import com.example.snoozeloo.ui.vo.UiAlarm
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 data class MainUiState(
-    val isLoading: Boolean = false
+    val alarmItems: List<UiAlarm> = emptyList(),
 )
 
 class MainViewModel(
@@ -26,6 +27,7 @@ class MainViewModel(
 
     init {
         checkAlarmPermission()
+        listenAlarms()
     }
 
     private fun checkAlarmPermission() {
@@ -33,6 +35,17 @@ class MainViewModel(
             if (!alarmRepository.canScheduleAlarm()) {
                 sendRouteEvent(Router.AlarmPermission)
             }
+        }
+    }
+
+    private fun listenAlarms() {
+        viewModelScope.launch {
+            alarmRepository.listenAlarms().map { alarms ->
+                alarms.map { it.toUiAlarm() }
+            }
+                .collect { uiAlarms ->
+                    _state.value = _state.value.copy(alarmItems = uiAlarms)
+                }
         }
     }
 

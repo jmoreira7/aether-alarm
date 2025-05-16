@@ -25,6 +25,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var alarmAdapter: AlarmAdapter
 
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory()
@@ -47,81 +48,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAlarmsListRecyclerView() {
+        alarmAdapter = AlarmAdapter()
         binding.activityMainAlarmList.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
-
-            //Mock data
-            val alarms = listOf(
-                UiAlarm(
-                    name = "Alarm 1",
-                    hour = "08",
-                    minute = "00",
-                    amPm = "AM",
-                    timeRemaining = "1 hour 30 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 2",
-                    hour = "09",
-                    minute = "10",
-                    amPm = "AM",
-                    timeRemaining = "2 hours 20 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 3",
-                    hour = "10",
-                    minute = "35",
-                    amPm = "PM",
-                    timeRemaining = "3 hours 45 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 1",
-                    hour = "08",
-                    minute = "00",
-                    amPm = "AM",
-                    timeRemaining = "1 hour 30 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 2",
-                    hour = "09",
-                    minute = "10",
-                    amPm = "AM",
-                    timeRemaining = "2 hours 20 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 3",
-                    hour = "10",
-                    minute = "35",
-                    amPm = "PM",
-                    timeRemaining = "3 hours 45 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 1",
-                    hour = "08",
-                    minute = "00",
-                    amPm = "AM",
-                    timeRemaining = "1 hour 30 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 2",
-                    hour = "09",
-                    minute = "10",
-                    amPm = "AM",
-                    timeRemaining = "2 hours 20 minutes"
-                ),
-                UiAlarm(
-                    name = "Alarm 3",
-                    hour = "10",
-                    minute = "35",
-                    amPm = "PM",
-                    timeRemaining = "3 hours 45 minutes"
-                )
-            )
-
-            adapter = AlarmAdapter(alarms)
+            adapter = alarmAdapter
         }
-
-        binding.activityMainNoAlarmsYetAlarmLogo.isVisible = false // ToDo
-        binding.activityMainNoAlarmsYetText.isVisible = false // ToDo
     }
 
     private fun setupButtons() {
@@ -135,8 +66,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect {
-                    // ToDo
+                viewModel.state.collect { state ->
+                    handleAlarmItems(state.alarmItems)
                 }
             }
         }
@@ -151,6 +82,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun handleAlarmItems(alarmItems: List<UiAlarm>) {
+        setEmptyStateViewsVisibility(alarmItems.isEmpty())
+        alarmAdapter.setAlarmItems(alarmItems)
+    }
+
+    private fun setEmptyStateViewsVisibility(isEmpty: Boolean) {
+        binding.activityMainNoAlarmsYetAlarmLogo.isVisible = isEmpty
+        binding.activityMainNoAlarmsYetText.isVisible = isEmpty
     }
 
     private fun handleRoute(route: Router) {

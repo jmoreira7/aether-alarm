@@ -26,21 +26,13 @@ fun Alarm.toUiAlarm(): UiAlarm {
 
 private fun getHourText(triggerTime: Long): String {
     return getHour(triggerTime).let { hour ->
-        if (hour < 10) {
-            "0$hour"
-        } else {
-            "$hour"
-        }
+        if (hour < 10) "0$hour" else "$hour"
     }
 }
 
 private fun getMinuteText(triggerTime: Long): String {
     return getMinute(triggerTime).let { minute ->
-        if (minute < 10) {
-            "0$minute"
-        } else {
-            "$minute"
-        }
+        if (minute < 10) "0$minute" else "$minute"
     }
 }
 

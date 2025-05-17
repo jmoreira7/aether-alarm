@@ -98,20 +98,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleRoute(route: Router) {
         when (route) {
             Router.AlarmPermission -> {
-                notifyRequestForPermission()
                 launchPermissionSettings()
             }
-        }
-    }
-
-    private fun notifyRequestForPermission() {
-        lifecycleScope.launch {
-            delay(500L)
-            Toast.makeText(
-                this@MainActivity,
-                REQUEST_ALARM_PERMISSION_TEXT,
-                Toast.LENGTH_LONG
-            ).show()
         }
     }
 

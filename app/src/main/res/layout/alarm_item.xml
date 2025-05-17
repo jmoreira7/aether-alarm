@@ -62,7 +62,7 @@
         app:thumbIcon="@drawable/alarm_switch_thumb"
         app:thumbIconTint="@null"
         app:thumbTint="@null"
-        app:trackDecorationTint="@color/dodger_blue"
-        app:trackTint="@color/dodger_blue" />
+        app:trackDecorationTint="@color/alarm_switch_track_tint"
+        app:trackTint="@color/alarm_switch_track_tint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

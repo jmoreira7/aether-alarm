@@ -24,6 +24,13 @@ class AlarmAdapter : RecyclerView.Adapter<AlarmViewHolder>() {
         holder.time.text = "${alarm.hour}:${alarm.minute}"
         holder.amPm.text = alarm.amPm.toText()
         holder.timeRemaining.text = "Alarm in ${alarm.timeRemaining}"
+        holder.enableSwitch.apply {
+            isChecked = alarm.isEnabled
+
+            setOnClickListener {
+                // ToDo
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

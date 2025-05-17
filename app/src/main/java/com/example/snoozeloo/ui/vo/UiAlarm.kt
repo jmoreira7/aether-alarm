@@ -7,20 +7,24 @@ import com.example.snoozeloo.ui.getMinute
 import com.example.snoozeloo.ui.timeDifferenceFromNowNormalized
 
 data class UiAlarm(
+    val id: Int,
     val name: String,
     val hour: String,
     val minute: String,
     val amPm: AmPm,
-    val timeRemaining: String
+    val timeRemaining: String,
+    val isEnabled: Boolean = true
 )
 
 fun Alarm.toUiAlarm(): UiAlarm {
     return UiAlarm(
+        id = id,
         name = name,
         hour = getHourText(triggerTime),
         minute = getMinuteText(triggerTime),
         amPm = getAmPm(triggerTime),
         timeRemaining = getTimeRemainingString(triggerTime),
+        isEnabled = isEnabled
     )
 }
 

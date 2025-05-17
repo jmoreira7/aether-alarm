@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAlarmsListRecyclerView() {
-        alarmAdapter = AlarmAdapter(::onAlarmItemSwitchToggled)
+        alarmAdapter = AlarmAdapter(::onAlarmItemSwitchToggled, ::onAlarmItemDeleteClicked)
 
         binding.activityMainAlarmList.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -123,9 +123,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onAlarmItemSwitchToggled(alarmId: Int, isChecked: Boolean) {
-        lifecycleScope.launch {
-            viewModel.onAlarmItemSwitchToggled(alarmId, isChecked)
-        }
+        viewModel.alarmItemSwitchToggled(alarmId, isChecked)
+    }
+
+    private fun onAlarmItemDeleteClicked(alarmId: Int) {
+        viewModel.alarmItemDeleteButtonClicked(alarmId)
     }
 
     companion object {

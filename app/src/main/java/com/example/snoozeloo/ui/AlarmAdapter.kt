@@ -9,7 +9,8 @@ import com.example.snoozeloo.R
 import com.example.snoozeloo.ui.vo.UiAlarm
 
 class AlarmAdapter(
-    private val onSwitchToggled: (Int, Boolean) -> Unit
+    private val onSwitchToggled: (Int, Boolean) -> Unit,
+    private val onDeleteClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<AlarmViewHolder>() {
     private var alarms: List<UiAlarm> = emptyList()
 
@@ -38,6 +39,10 @@ class AlarmAdapter(
                 )
                 onSwitchToggled(alarm.id, isChecked)
             }
+        }
+        holder.deleteButton.setOnClickListener {
+            Log.d(TAG, "Delete button clicked for alarm: ${alarm.name}")
+            onDeleteClicked(alarm.id)
         }
     }
 

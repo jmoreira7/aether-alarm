@@ -37,9 +37,9 @@ class MainViewModel(
         setAlarmItemsTimeRemainingUpdater()
     }
 
-    fun onAlarmItemSwitchToggled(id: Int, isChecked: Boolean) {
+    fun alarmItemSwitchToggled(alarmId: Int, isChecked: Boolean) {
         viewModelScope.launch {
-            alarmRepository.getAlarm(id)?.let { alarm ->
+            alarmRepository.getAlarm(alarmId)?.let { alarm ->
                 val updatedAlarm = if (isChecked) {
                     alarm.copy(
                         triggerTime = getNextOccurrence(alarm.triggerTime),
@@ -51,6 +51,12 @@ class MainViewModel(
 
                 alarmRepository.updateAlarm(updatedAlarm)
             }
+        }
+    }
+
+    fun alarmItemDeleteButtonClicked(alarmId: Int) {
+        viewModelScope.launch {
+            alarmRepository.deleteAlarm(alarmId)
         }
     }
 

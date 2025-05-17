@@ -34,9 +34,9 @@ class DefaultAlarmRepository(
         alarmDao.updateAlarm(alarm)
     }
 
-    override suspend fun deleteAlarm(alarm: Alarm) {
-        alarmScheduler.cancelAlarm(alarm.id)
-        alarmDao.deleteAlarm(alarm)
+    override suspend fun deleteAlarm(alarmId: Int) {
+        alarmScheduler.cancelAlarm(alarmId)
+        alarmDao.deleteAlarm(alarmId)
     }
 
     override suspend fun listenAlarms(): Flow<List<Alarm>> {

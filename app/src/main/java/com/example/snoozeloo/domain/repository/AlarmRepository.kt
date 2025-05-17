@@ -10,7 +10,7 @@ interface AlarmRepository {
 
     suspend fun updateAlarm(alarm: Alarm)
 
-    suspend fun deleteAlarm(alarm: Alarm)
+    suspend fun deleteAlarm(alarmId: Int)
 
     suspend fun listenAlarms(): Flow<List<Alarm>>
 

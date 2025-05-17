@@ -2,6 +2,7 @@ package com.example.snoozeloo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.domain.repository.AlarmRepository
 import com.example.snoozeloo.ui.vo.UiAlarm
 import com.example.snoozeloo.ui.vo.toUiAlarm
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -21,6 +23,8 @@ data class MainUiState(
 class MainViewModel(
     private val alarmRepository: AlarmRepository
 ) : ViewModel() {
+    private var alarms: List<Alarm> = emptyList()
+
     private val _state = MutableStateFlow(MainUiState())
     val state: StateFlow<MainUiState> = _state.asStateFlow()
 
@@ -60,9 +64,9 @@ class MainViewModel(
 
     private fun listenAlarms() {
         viewModelScope.launch {
-            alarmRepository.listenAlarms().map { alarms ->
-                alarms.map { it.toUiAlarm() }
-            }
+            alarmRepository.listenAlarms()
+                .onEach { alarms -> this@MainViewModel.alarms = alarms }
+                .map { alarms -> alarms.map { alarm -> alarm.toUiAlarm() } }
                 .collect { uiAlarms ->
                     _state.value = _state.value.copy(alarmItems = uiAlarms)
                 }
@@ -75,21 +79,19 @@ class MainViewModel(
         }
     }
 
-    // This implementation can be improved to use a better way to update the time remaining
     private fun setAlarmItemsTimeRemainingUpdater() {
         viewModelScope.launch {
             while (true) {
-                delay(60000L)
+                delay(THIRTY_SECONDS)
                 _state.value = _state.value.copy(
                     alarmItems = _state.value.alarmItems.map { uiAlarm ->
-                        val updatedTimeRemaining = getUpdatedTimeRemaining(
-                            uiAlarm.hourTimeRemaining,
-                            uiAlarm.minuteTimeRemaining
-                        )
-
                         uiAlarm.copy(
-                            hourTimeRemaining = updatedTimeRemaining.first,
-                            minuteTimeRemaining = updatedTimeRemaining.second
+                            hourTimeRemaining = getHourTimeRemaining(
+                                alarms.first { it.id == uiAlarm.id }.triggerTime
+                            ).toString(),
+                            minuteTimeRemaining = getMinuteTimeRemaining(
+                                alarms.first { it.id == uiAlarm.id }.triggerTime
+                            ).toString()
                         )
                     }
                 )
@@ -97,21 +99,7 @@ class MainViewModel(
         }
     }
 
-    private fun getUpdatedTimeRemaining(
-        hourTimeRemaining: String,
-        minuteTimeRemaining: String
-    ): Pair<String, String> {
-        val hour = hourTimeRemaining.toInt()
-        val minute = minuteTimeRemaining.toInt()
-
-        return if (minute > 0) {
-            Pair("$hour", "${(minute - 1)}")
-        } else {
-            Pair("${(hour - 1)}", "$MAX_MINUTES_IN_HOUR")
-        }
-    }
-
     companion object {
-        private const val MAX_MINUTES_IN_HOUR = 59
+        private const val THIRTY_SECONDS = 30_000L
     }
 }

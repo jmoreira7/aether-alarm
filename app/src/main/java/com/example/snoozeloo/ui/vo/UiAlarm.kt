@@ -3,8 +3,9 @@ package com.example.snoozeloo.ui.vo
 import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.ui.AmPm
 import com.example.snoozeloo.ui.getHour
+import com.example.snoozeloo.ui.getHourTimeRemaining
 import com.example.snoozeloo.ui.getMinute
-import com.example.snoozeloo.ui.timeDifferenceFromNowNormalized
+import com.example.snoozeloo.ui.getMinuteTimeRemaining
 
 data class UiAlarm(
     val id: Int,
@@ -24,8 +25,8 @@ fun Alarm.toUiAlarm(): UiAlarm {
         hour = getHourText(triggerTime),
         minute = getMinuteText(triggerTime),
         amPm = getAmPm(triggerTime),
-        hourTimeRemaining = getHourTimeRemainingString(triggerTime),
-        minuteTimeRemaining = getMinuteTimeRemainingString(triggerTime),
+        hourTimeRemaining = getHourTimeRemaining(triggerTime).toString(),
+        minuteTimeRemaining = getMinuteTimeRemaining(triggerTime).toString(),
         isEnabled = isEnabled
     )
 }
@@ -56,18 +57,4 @@ private fun getAmPm(triggerTime: Long): AmPm {
             else -> AmPm.NONE
         }
     }
-}
-
-private fun getHourTimeRemainingString(triggerTime: Long): String {
-    val timeRemaining = timeDifferenceFromNowNormalized(triggerTime)
-    val hoursRemaining = timeRemaining.first
-
-    return "$hoursRemaining"
-}
-
-private fun getMinuteTimeRemainingString(triggerTime: Long): String {
-    val timeRemaining = timeDifferenceFromNowNormalized(triggerTime)
-    val minutesRemaining = timeRemaining.second
-
-    return "$minutesRemaining"
 }

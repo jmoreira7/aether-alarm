@@ -14,19 +14,6 @@ fun getMinute(timeMillis: Long): Int {
     }.get(Calendar.MINUTE)
 }
 
-fun timeDifferenceFromNowNormalized(timeMillis: Long): Pair<Int, Int> {
-    val now = Calendar.getInstance().timeInMillis
-    val diffMillis = timeMillis - now
-
-    if (diffMillis <= 0) return Pair(0, 0)
-
-    val diffMinutes = diffMillis / (60 * 1000)
-    val hours = (diffMinutes / 60).toInt()
-    val minutes = (diffMinutes % 60).toInt()
-
-    return Pair(hours, minutes)
-}
-
 fun getNextOccurrence(timeMillis: Long): Long {
     val now = Calendar.getInstance()
     val target = Calendar.getInstance().apply {
@@ -42,4 +29,25 @@ fun getNextOccurrence(timeMillis: Long): Long {
     }
 
     return target.timeInMillis
+}
+
+fun getHourTimeRemaining(triggerTime: Long): Int {
+    return timeDifferenceFromNowNormalized(triggerTime).first
+}
+
+fun getMinuteTimeRemaining(triggerTime: Long): Int {
+    return timeDifferenceFromNowNormalized(triggerTime).second
+}
+
+private fun timeDifferenceFromNowNormalized(timeMillis: Long): Pair<Int, Int> {
+    val now = Calendar.getInstance().timeInMillis
+    val diffMillis = timeMillis - now
+
+    if (diffMillis <= 0) return Pair(0, 0)
+
+    val diffMinutes = diffMillis / (60 * 1000)
+    val hours = (diffMinutes / 60).toInt()
+    val minutes = (diffMinutes % 60).toInt()
+
+    return Pair(hours, minutes)
 }

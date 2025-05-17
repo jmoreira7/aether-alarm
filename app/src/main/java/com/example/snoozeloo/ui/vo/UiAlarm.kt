@@ -12,7 +12,8 @@ data class UiAlarm(
     val hour: String,
     val minute: String,
     val amPm: AmPm,
-    val timeRemaining: String,
+    val hourTimeRemaining: String,
+    val minuteTimeRemaining: String,
     val isEnabled: Boolean = true
 )
 
@@ -23,7 +24,8 @@ fun Alarm.toUiAlarm(): UiAlarm {
         hour = getHourText(triggerTime),
         minute = getMinuteText(triggerTime),
         amPm = getAmPm(triggerTime),
-        timeRemaining = getTimeRemainingString(triggerTime),
+        hourTimeRemaining = getHourTimeRemainingString(triggerTime),
+        minuteTimeRemaining = getMinuteTimeRemainingString(triggerTime),
         isEnabled = isEnabled
     )
 }
@@ -56,10 +58,16 @@ private fun getAmPm(triggerTime: Long): AmPm {
     }
 }
 
-private fun getTimeRemainingString(triggerTime: Long): String {
+private fun getHourTimeRemainingString(triggerTime: Long): String {
     val timeRemaining = timeDifferenceFromNowNormalized(triggerTime)
     val hoursRemaining = timeRemaining.first
+
+    return "$hoursRemaining"
+}
+
+private fun getMinuteTimeRemainingString(triggerTime: Long): String {
+    val timeRemaining = timeDifferenceFromNowNormalized(triggerTime)
     val minutesRemaining = timeRemaining.second
 
-    return "${hoursRemaining}h ${minutesRemaining}min"
+    return "$minutesRemaining"
 }

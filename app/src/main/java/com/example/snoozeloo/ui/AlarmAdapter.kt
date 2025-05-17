@@ -26,7 +26,8 @@ class AlarmAdapter(
         holder.title.text = alarm.name
         holder.time.text = "${alarm.hour}:${alarm.minute}"
         holder.amPm.text = alarm.amPm.toText()
-        holder.timeRemaining.text = "Alarm in ${alarm.timeRemaining}"
+        holder.timeRemaining.text =
+            "Alarm in ${alarm.hourTimeRemaining}h ${alarm.minuteTimeRemaining}min"
         holder.enableSwitch.apply {
             isChecked = alarm.isEnabled
 

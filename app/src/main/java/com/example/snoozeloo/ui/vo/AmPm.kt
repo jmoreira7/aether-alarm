@@ -6,7 +6,6 @@ enum class AmPm {
     NONE
 }
 
-
 fun AmPm.toText(): String {
     return when (this) {
         AmPm.AM -> "AM"

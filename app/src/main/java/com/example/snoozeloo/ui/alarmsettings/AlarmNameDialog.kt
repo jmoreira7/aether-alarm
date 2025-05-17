@@ -2,6 +2,7 @@ package com.example.snoozeloo.ui.alarmsettings
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
@@ -17,10 +18,11 @@ class AlarmNameDialog : DialogFragment() {
     private lateinit var alarmNameDialogTextInputField: TextInputEditText
     private lateinit var dialog: Dialog
 
-    private val viewModel: CreateAlarmViewModel by activityViewModels()
+    private val viewModel: AlarmSettingsViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         bindViews()
+        getArgs()
 
         dialog = MaterialAlertDialogBuilder(requireContext())
             .setBackground(
@@ -53,6 +55,13 @@ class AlarmNameDialog : DialogFragment() {
         }
     }
 
+    private fun getArgs() {
+        arguments?.getString(ALARM_NAME_EXTRA)?.let { alarmName ->
+            alarmNameDialogTextInputField.text =
+                Editable.Factory.getInstance().newEditable(alarmName)
+        }
+    }
+
     private fun setupViews() {
         dialog.setOnDismissListener {
             viewModel.alarmNameDialogDismissed()
@@ -62,5 +71,9 @@ class AlarmNameDialog : DialogFragment() {
 
     private fun handleSaveButtonEvent() {
         viewModel.alarmNameDialogSaveButtonClicked(alarmNameDialogTextInputField.text.toString())
+    }
+
+    companion object {
+        const val ALARM_NAME_EXTRA = "ALARM_NAME"
     }
 }

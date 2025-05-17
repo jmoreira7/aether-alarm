@@ -47,7 +47,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAlarmsListRecyclerView() {
-        alarmAdapter = AlarmAdapter(::onAlarmItemSwitchToggled, ::onAlarmItemDeleteClicked)
+        alarmAdapter = AlarmAdapter(
+            ::onAlarmItemClicked,
+            ::onAlarmItemSwitchToggled,
+            ::onAlarmItemDeleteButtonClicked
+        )
 
         binding.activityMainAlarmList.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -57,9 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.activityMainAddAlarmButton.setOnClickListener {
-            Intent(this, AlarmSettingsActivity::class.java).also {
-                startActivity(it)
-            }
+            launchAlarmSettingsActivity(null, EMPTY_STRING)
         }
     }
 
@@ -109,18 +111,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun launchAlarmSettingsActivity(alarmId: Int?, alarmName: String) {
+        val intent = Intent(this, AlarmSettingsActivity::class.java)
+        alarmId?.let { id ->
+            intent.putExtra("ALARM_ID", id)
+            intent.putExtra("ALARM_NAME", alarmName)
+        }
+        startActivity(intent)
+    }
+
+    private fun onAlarmItemClicked(alarmId: Int, alarmName: String) {
+        launchAlarmSettingsActivity(alarmId, alarmName)
+    }
+
     private fun onAlarmItemSwitchToggled(alarmId: Int, isChecked: Boolean) {
         viewModel.alarmItemSwitchToggled(alarmId, isChecked)
     }
 
-    private fun onAlarmItemDeleteClicked(alarmId: Int) {
+    private fun onAlarmItemDeleteButtonClicked(alarmId: Int) {
         viewModel.alarmItemDeleteButtonClicked(alarmId)
     }
 
     companion object {
         private const val TAG = "MainActivity"
-        private const val REQUEST_ALARM_PERMISSION_TEXT =
-            "Please grant permission to schedule exact alarms"
+        private const val EMPTY_STRING = ""
     }
 
 }

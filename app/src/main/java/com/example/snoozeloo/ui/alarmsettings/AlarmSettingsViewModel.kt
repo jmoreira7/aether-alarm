@@ -23,15 +23,25 @@ data class TimeInputField(
     val color: Int
 )
 
-class CreateAlarmViewModel(
+class AlarmSettingsViewModel(
     private val alarmRepository: AlarmRepository
 ) : ViewModel() {
     private var isHourFocusedOnce = false
-
     private var isMinuteFocusedOnce = false
+    var alarmId: Int? = null
+    val alarmName: String
+        get() = state.value.alarmName
 
     private val _state = MutableStateFlow(CreateAlarmUiState())
     val state = _state.asStateFlow()
+
+    fun setAlarmName(alarmName: String) {
+        _state.update { state ->
+            state.copy(
+                alarmName = alarmName
+            )
+        }
+    }
 
     fun hourInputTextHasFocus() {
         _state.update { state ->
@@ -68,6 +78,18 @@ class CreateAlarmViewModel(
             val timeInMillis = getTimeInMillis()
 
             Log.d(TAG, "Saving alarm time in millis: $timeInMillis")
+
+            alarmId?.let { alarmId ->
+                alarmRepository.updateAlarm(
+                    Alarm(
+                        id = alarmId,
+                        triggerTime = timeInMillis,
+                        name = state.value.alarmName,
+                        isEnabled = true
+                    )
+                )
+                return@launch
+            }
 
             alarmRepository.setAlarm(
                 Alarm(

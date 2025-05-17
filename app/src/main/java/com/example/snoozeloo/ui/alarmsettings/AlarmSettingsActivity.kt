@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class AlarmSettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlarmSettingsBinding
 
-    private val viewModel: CreateAlarmViewModel by viewModels {
+    private val viewModel: AlarmSettingsViewModel by viewModels {
         AlarmSettingsViewModelFactory()
     }
 
@@ -24,8 +24,21 @@ class AlarmSettingsActivity : AppCompatActivity() {
         binding = ActivityAlarmSettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getExtras()
         setupViews()
         setupViewModel()
+    }
+
+    private fun getExtras() {
+        intent.getIntExtra(ALARM_ID_EXTRA, INVALID_VALUE).let { alarmId ->
+            if (alarmId != INVALID_VALUE) {
+                viewModel.alarmId = alarmId
+            }
+        }
+
+        intent.getStringExtra(ALARM_NAME_EXTRA).let { alarmName ->
+            viewModel.setAlarmName(alarmName ?: EMPTY_STRING)
+        }
     }
 
     private fun setupViews() {
@@ -89,7 +102,17 @@ class AlarmSettingsActivity : AppCompatActivity() {
 
         binding.activityAlarmSettingsSecondaryTile.setOnClickListener {
             viewModel.alarmNameDialogOpened()
-            AlarmNameDialog().show(supportFragmentManager, "AlarmNameDialog")
+            showAlarmNameDialog(viewModel.alarmName)
+        }
+    }
+
+    private fun showAlarmNameDialog(alarmName: String) {
+        val args = Bundle().apply {
+            putString(ALARM_NAME_KEY, alarmName)
+        }
+        AlarmNameDialog().apply {
+            arguments = args
+            show(supportFragmentManager, "AlarmNameDialog")
         }
     }
 
@@ -123,5 +146,13 @@ class AlarmSettingsActivity : AppCompatActivity() {
 
     private fun handleAlarmNameText(alarmName: String) {
         binding.activityAlarmSettingsName.text = alarmName
+    }
+
+    companion object {
+        private const val ALARM_ID_EXTRA = "ALARM_ID"
+        private const val ALARM_NAME_EXTRA = "ALARM_NAME"
+        private const val ALARM_NAME_KEY = "ALARM_NAME"
+        private const val INVALID_VALUE = -1
+        private const val EMPTY_STRING = ""
     }
 }

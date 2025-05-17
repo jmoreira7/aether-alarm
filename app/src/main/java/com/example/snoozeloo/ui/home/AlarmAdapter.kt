@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snoozeloo.R
-import com.example.snoozeloo.ui.vo.toText
 import com.example.snoozeloo.ui.vo.UiAlarm
+import com.example.snoozeloo.ui.vo.toText
 
 class AlarmAdapter(
+    private val onAlarmItemClicked: (Int, String) -> Unit,
     private val onSwitchToggled: (Int, Boolean) -> Unit,
     private val onDeleteClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<AlarmViewHolder>() {
@@ -44,6 +45,10 @@ class AlarmAdapter(
         holder.deleteButton.setOnClickListener {
             Log.d(TAG, "Delete button clicked for alarm: ${alarm.name}")
             onDeleteClicked(alarm.id)
+        }
+        holder.itemView.setOnClickListener {
+            Log.d(TAG, "Alarm item clicked. [Name: ${alarm.name}], [Id: ${alarm.id}]")
+            onAlarmItemClicked(alarm.id, alarm.name)
         }
     }
 

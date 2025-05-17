@@ -7,6 +7,6 @@ import com.example.snoozeloo.SnoozelooApp
 class AlarmSettingsViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CreateAlarmViewModel(SnoozelooApp.appModule.alarmRepository) as T
+        return AlarmSettingsViewModel(SnoozelooApp.appModule.alarmRepository) as T
     }
 }

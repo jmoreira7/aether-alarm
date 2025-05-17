@@ -65,4 +65,15 @@
         app:trackDecorationTint="@color/alarm_switch_track_tint"
         app:trackTint="@color/alarm_switch_track_tint" />
 
+    <ImageButton
+        android:id="@+id/alarm_item_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/alarm_item_delete_button_margin_end"
+        android:layout_marginBottom="@dimen/alarm_item_delete_button_margin_bottom"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/delete_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,8 @@
     <dimen name="alarm_item_time_remaining">16dp</dimen>
     <dimen name="alarm_item_switch_margin_top">8dp</dimen>
     <dimen name="alarm_item_switch_margin_end">16dp</dimen>
+    <dimen name="alarm_item_delete_button_margin_end">16dp</dimen>
+    <dimen name="alarm_item_delete_button_margin_bottom">4dp</dimen>
 
     <!-- activity_create_alarm.xml -->
     <dimen name="activity_create_alarm_main_tile_height">143dp</dimen>

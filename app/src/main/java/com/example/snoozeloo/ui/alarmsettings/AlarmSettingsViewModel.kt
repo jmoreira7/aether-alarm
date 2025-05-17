@@ -43,6 +43,28 @@ class AlarmSettingsViewModel(
         }
     }
 
+    fun setAlarmHour(alarmHour: String) {
+        _state.update { state ->
+            state.copy(
+                hourInputField = TimeInputField(
+                    time = alarmHour,
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+    }
+
+    fun setAlarmMinute(alarmMinute: String) {
+        _state.update { state ->
+            state.copy(
+                minuteInputField = TimeInputField(
+                    time = alarmMinute,
+                    color = R.color.dodger_blue
+                )
+            )
+        }
+    }
+
     fun hourInputTextHasFocus() {
         _state.update { state ->
             state.copy(

@@ -30,14 +30,26 @@ class AlarmSettingsActivity : AppCompatActivity() {
     }
 
     private fun getExtras() {
-        intent.getIntExtra(ALARM_ID_EXTRA, INVALID_VALUE).let { alarmId ->
-            if (alarmId != INVALID_VALUE) {
-                viewModel.alarmId = alarmId
-            }
-        }
+        intent.run {
+            getIntExtra(ALARM_ID_EXTRA, INVALID_VALUE)
+                .takeIf { it != INVALID_VALUE }?.let { alarmId ->
+                    viewModel.alarmId = alarmId
+                }
 
-        intent.getStringExtra(ALARM_NAME_EXTRA).let { alarmName ->
-            viewModel.setAlarmName(alarmName ?: EMPTY_STRING)
+
+            getStringExtra(ALARM_NAME_EXTRA)?.let { alarmName ->
+                viewModel.setAlarmName(alarmName)
+            }
+
+            getStringExtra(ALARM_HOUR_EXTRA)
+                ?.takeIf { it.isNotBlank() }?.let { alarmHour ->
+                    viewModel.setAlarmHour(alarmHour)
+                }
+
+            getStringExtra(ALARM_MINUTE_EXTRA)
+                ?.takeIf { it.isNotBlank() }?.let { alarmMinute ->
+                    viewModel.setAlarmMinute(alarmMinute)
+                }
         }
     }
 
@@ -110,7 +122,7 @@ class AlarmSettingsActivity : AppCompatActivity() {
         val args = Bundle().apply {
             putString(ALARM_NAME_KEY, alarmName)
         }
-        AlarmNameDialog().apply {
+        AlarmNameDialog().run {
             arguments = args
             show(supportFragmentManager, "AlarmNameDialog")
         }
@@ -149,10 +161,11 @@ class AlarmSettingsActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val INVALID_VALUE = -1
         private const val ALARM_ID_EXTRA = "ALARM_ID"
         private const val ALARM_NAME_EXTRA = "ALARM_NAME"
         private const val ALARM_NAME_KEY = "ALARM_NAME"
-        private const val INVALID_VALUE = -1
-        private const val EMPTY_STRING = ""
+        private const val ALARM_HOUR_EXTRA = "ALARM_HOUR"
+        private const val ALARM_MINUTE_EXTRA = "ALARM_MINUTE"
     }
 }

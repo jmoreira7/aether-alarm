@@ -10,9 +10,14 @@ import com.example.snoozeloo.ui.vo.UiAlarm
 import com.example.snoozeloo.ui.vo.toText
 
 class AlarmAdapter(
-    private val onAlarmItemClicked: (Int, String) -> Unit,
-    private val onSwitchToggled: (Int, Boolean) -> Unit,
-    private val onDeleteClicked: (Int) -> Unit
+    private val onAlarmItemClicked: (
+        alarmId: Int,
+        alarmName: String,
+        alarmHour: String,
+        alarmMinute: String
+    ) -> Unit,
+    private val onSwitchToggled: (alarmId: Int, isChecked: Boolean) -> Unit,
+    private val onDeleteClicked: (alarmId: Int) -> Unit
 ) : RecyclerView.Adapter<AlarmViewHolder>() {
     private var alarms: List<UiAlarm> = emptyList()
 
@@ -39,16 +44,19 @@ class AlarmAdapter(
                     TAG,
                     "Switch toggled for alarm: ${alarm.name}, isChecked: $isChecked"
                 )
+
                 onSwitchToggled(alarm.id, isChecked)
             }
         }
         holder.deleteButton.setOnClickListener {
             Log.d(TAG, "Delete button clicked for alarm: ${alarm.name}")
+
             onDeleteClicked(alarm.id)
         }
         holder.itemView.setOnClickListener {
             Log.d(TAG, "Alarm item clicked. [Name: ${alarm.name}], [Id: ${alarm.id}]")
-            onAlarmItemClicked(alarm.id, alarm.name)
+
+            onAlarmItemClicked(alarm.id, alarm.name, alarm.hour, alarm.minute)
         }
     }
 

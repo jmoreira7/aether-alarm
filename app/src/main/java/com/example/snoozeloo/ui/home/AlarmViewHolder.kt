@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui
+package com.example.snoozeloo.ui.home
 
 import android.view.View
 import android.widget.ImageButton

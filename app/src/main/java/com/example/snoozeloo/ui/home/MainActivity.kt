@@ -1,10 +1,9 @@
-package com.example.snoozeloo.ui
+package com.example.snoozeloo.ui.home
 
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,10 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snoozeloo.databinding.ActivityMainBinding
+import com.example.snoozeloo.ui.Router
 import com.example.snoozeloo.ui.createalarm.CreateAlarmActivity
 import com.example.snoozeloo.ui.vo.UiAlarm
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 

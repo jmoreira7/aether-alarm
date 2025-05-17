@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui
+package com.example.snoozeloo.ui.vo
 
 enum class AmPm {
     AM,

@@ -1,7 +1,6 @@
 package com.example.snoozeloo.ui.vo
 
 import com.example.snoozeloo.domain.entity.Alarm
-import com.example.snoozeloo.ui.AmPm
 import com.example.snoozeloo.ui.getHour
 import com.example.snoozeloo.ui.getHourTimeRemaining
 import com.example.snoozeloo.ui.getMinute

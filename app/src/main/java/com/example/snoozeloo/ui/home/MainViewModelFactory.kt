@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui
+package com.example.snoozeloo.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

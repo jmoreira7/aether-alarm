@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui
+package com.example.snoozeloo.ui.home
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snoozeloo.R
+import com.example.snoozeloo.ui.vo.toText
 import com.example.snoozeloo.ui.vo.UiAlarm
 
 class AlarmAdapter(

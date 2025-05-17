@@ -2,9 +2,6 @@ package com.example.snoozeloo.ui
 
 import java.util.Calendar
 
-private const val ONE_DAY_IN_HOURS = 24
-private const val ONE_HOUR_IN_MINUTES = 60
-
 fun getHour(timeMillis: Long): Int {
     return Calendar.getInstance().apply {
         timeInMillis = timeMillis
@@ -18,47 +15,16 @@ fun getMinute(timeMillis: Long): Int {
 }
 
 fun timeDifferenceFromNowNormalized(timeMillis: Long): Pair<Int, Int> {
-    val now = Calendar.getInstance()
-    val target = Calendar.getInstance().apply {
-        timeInMillis = timeMillis
-        set(Calendar.YEAR, now.get(Calendar.YEAR))
-        set(Calendar.MONTH, now.get(Calendar.MONTH))
-        set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH))
-    }
+    val now = Calendar.getInstance().timeInMillis
+    val diffMillis = timeMillis - now
 
-    return when {
-        target.timeInMillis > now.timeInMillis && target.timeInMillis > now.timeInMillis -> {
-            return Pair(
-                target.get(Calendar.HOUR_OF_DAY) - now.get(Calendar.HOUR_OF_DAY),
-                target.get(Calendar.MINUTE) - now.get(Calendar.MINUTE)
-            )
-        }
+    if (diffMillis <= 0) return Pair(0, 0)
 
-        target.timeInMillis > now.timeInMillis && target.timeInMillis < now.timeInMillis -> {
-            return Pair(
-                target.get(Calendar.HOUR_OF_DAY) - now.get(Calendar.HOUR_OF_DAY),
-                (target.get(Calendar.MINUTE) + ONE_HOUR_IN_MINUTES) - now.get(Calendar.MINUTE)
-            )
-        }
+    val diffMinutes = diffMillis / (60 * 1000)
+    val hours = (diffMinutes / 60).toInt()
+    val minutes = (diffMinutes % 60).toInt()
 
-        target.timeInMillis < now.timeInMillis && target.timeInMillis < now.timeInMillis -> {
-            return Pair(
-                (target.get(Calendar.HOUR_OF_DAY) + ONE_DAY_IN_HOURS) - now.get(Calendar.HOUR_OF_DAY),
-                (target.get(Calendar.MINUTE) + ONE_HOUR_IN_MINUTES) - now.get(Calendar.MINUTE)
-            )
-        }
-
-        target.timeInMillis < now.timeInMillis && target.timeInMillis > now.timeInMillis -> {
-            return Pair(
-                (target.get(Calendar.HOUR_OF_DAY) + ONE_DAY_IN_HOURS) - now.get(Calendar.HOUR_OF_DAY),
-                target.get(Calendar.MINUTE) - now.get(Calendar.MINUTE)
-            )
-        }
-
-        else -> {
-            Pair(0, 0)
-        }
-    }
+    return Pair(hours, minutes)
 }
 
 fun getNextOccurrence(timeMillis: Long): Long {

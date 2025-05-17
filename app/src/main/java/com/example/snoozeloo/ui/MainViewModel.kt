@@ -31,6 +31,23 @@ class MainViewModel(
         listenAlarms()
     }
 
+    fun onAlarmItemSwitchToggled(id: Int, isChecked: Boolean) {
+        viewModelScope.launch {
+            alarmRepository.getAlarm(id)?.let { alarm ->
+                val updatedAlarm = if (isChecked) {
+                    alarm.copy(
+                        triggerTime = getNextOccurrence(alarm.triggerTime),
+                        isEnabled = true
+                    )
+                } else {
+                    alarm.copy(isEnabled = false)
+                }
+
+                alarmRepository.updateAlarm(updatedAlarm)
+            }
+        }
+    }
+
     private fun checkAlarmPermission() {
         viewModelScope.launch {
             if (!alarmRepository.canScheduleAlarm()) {

@@ -60,3 +60,20 @@ fun timeDifferenceFromNowNormalized(timeMillis: Long): Pair<Int, Int> {
         }
     }
 }
+
+fun getNextOccurrence(timeMillis: Long): Long {
+    val now = Calendar.getInstance()
+    val target = Calendar.getInstance().apply {
+        timeInMillis = now.timeInMillis
+        set(Calendar.HOUR_OF_DAY, getHour(timeMillis))
+        set(Calendar.MINUTE, getMinute(timeMillis))
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
+    if (target.timeInMillis < now.timeInMillis) {
+        target.add(Calendar.DAY_OF_MONTH, 1)
+    }
+
+    return target.timeInMillis
+}

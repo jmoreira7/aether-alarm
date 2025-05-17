@@ -14,13 +14,23 @@ class DefaultAlarmRepository(
         alarmDao.insertAlarm(alarm)
     }
 
-    override suspend fun getAlarm(id: String): Alarm? {
-        // ToDo
-        return null
+    override suspend fun getAlarm(id: Int): Alarm? {
+        return alarmDao.getAlarmById(id)?.let { alarmEntity ->
+            Alarm(
+                id = alarmEntity.id,
+                triggerTime = alarmEntity.triggerTime,
+                name = alarmEntity.name,
+                isEnabled = alarmEntity.isEnabled
+            )
+        }
     }
 
     override suspend fun updateAlarm(alarm: Alarm) {
-        alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)
+        if (alarm.isEnabled) {
+            alarmScheduler.scheduleAlarm(alarm.id, alarm.triggerTime)
+        } else {
+            alarmScheduler.cancelAlarm(alarm.id)
+        }
         alarmDao.updateAlarm(alarm)
     }
 

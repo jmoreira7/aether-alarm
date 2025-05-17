@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAlarmsListRecyclerView() {
-        alarmAdapter = AlarmAdapter()
+        alarmAdapter = AlarmAdapter(::onAlarmItemSwitchToggled)
+
         binding.activityMainAlarmList.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = alarmAdapter
@@ -118,6 +119,12 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "Requesting alarm permission")
         Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).also {
             startActivity(it)
+        }
+    }
+
+    private fun onAlarmItemSwitchToggled(alarmId: Int, isChecked: Boolean) {
+        lifecycleScope.launch {
+            viewModel.onAlarmItemSwitchToggled(alarmId, isChecked)
         }
     }
 

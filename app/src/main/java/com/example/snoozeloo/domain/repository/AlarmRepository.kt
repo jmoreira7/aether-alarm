@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface AlarmRepository {
     suspend fun setAlarm(alarm: Alarm)
 
-    suspend fun getAlarm(id: String): Alarm?
+    suspend fun getAlarm(id: Int): Alarm?
 
     suspend fun updateAlarm(alarm: Alarm)
 

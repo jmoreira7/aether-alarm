@@ -1,13 +1,16 @@
 package com.example.snoozeloo.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.snoozeloo.R
 import com.example.snoozeloo.ui.vo.UiAlarm
 
-class AlarmAdapter : RecyclerView.Adapter<AlarmViewHolder>() {
+class AlarmAdapter(
+    private val onSwitchToggled: (Int, Boolean) -> Unit
+) : RecyclerView.Adapter<AlarmViewHolder>() {
     private var alarms: List<UiAlarm> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
@@ -28,7 +31,11 @@ class AlarmAdapter : RecyclerView.Adapter<AlarmViewHolder>() {
             isChecked = alarm.isEnabled
 
             setOnClickListener {
-                // ToDo
+                Log.d(
+                    TAG,
+                    "Switch toggled for alarm: ${alarm.name}, isChecked: $isChecked"
+                )
+                onSwitchToggled(alarm.id, isChecked)
             }
         }
     }
@@ -37,5 +44,9 @@ class AlarmAdapter : RecyclerView.Adapter<AlarmViewHolder>() {
     fun setAlarmItems(alarmItems: List<UiAlarm>) {
         alarms = alarmItems
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private const val TAG = "AlarmAdapter"
     }
 }

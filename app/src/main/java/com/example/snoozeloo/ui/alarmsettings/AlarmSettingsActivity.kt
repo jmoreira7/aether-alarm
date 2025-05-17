@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui.createalarm
+package com.example.snoozeloo.ui.alarmsettings
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,20 +8,20 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.snoozeloo.databinding.ActivityCreateAlarmBinding
+import com.example.snoozeloo.databinding.ActivityAlarmSettingsBinding
 import kotlinx.coroutines.launch
 
-class CreateAlarmActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCreateAlarmBinding
+class AlarmSettingsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAlarmSettingsBinding
 
     private val viewModel: CreateAlarmViewModel by viewModels {
-        CreateAlarmViewModelFactory()
+        AlarmSettingsViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityCreateAlarmBinding.inflate(layoutInflater)
+        binding = ActivityAlarmSettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupViews()
@@ -50,7 +50,7 @@ class CreateAlarmActivity : AppCompatActivity() {
     }
 
     private fun setupHourTextInputView() {
-        binding.activityCreateAlarmHourTextInput.run {
+        binding.activityAlarmSettingsHourTextInput.run {
             setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     viewModel.hourInputTextHasFocus()
@@ -64,7 +64,7 @@ class CreateAlarmActivity : AppCompatActivity() {
     }
 
     private fun setupMinuteTextInputView() {
-        binding.activityCreateAlarmMinuteTextInput.run {
+        binding.activityAlarmSettingsMinuteTextInput.run {
             setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     viewModel.minuteInputTextHasFocus()
@@ -78,23 +78,23 @@ class CreateAlarmActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
-        binding.activityCreateAlarmBackButton.setOnClickListener {
+        binding.activityAlarmSettingsBackButton.setOnClickListener {
             finish()
         }
 
-        binding.activityCreateAlarmSaveButton.setOnClickListener {
+        binding.activityAlarmSettingsSaveButton.setOnClickListener {
             viewModel.saveAlarmButtonClicked()
             finish()
         }
 
-        binding.activityCreateAlarmSecondaryTile.setOnClickListener {
+        binding.activityAlarmSettingsSecondaryTile.setOnClickListener {
             viewModel.alarmNameDialogOpened()
             AlarmNameDialog().show(supportFragmentManager, "AlarmNameDialog")
         }
     }
 
     private fun handleHourInputText(hour: TimeInputField) {
-        binding.activityCreateAlarmHourTextInput.run {
+        binding.activityAlarmSettingsHourTextInput.run {
             setTextColor(resources.getColor(hour.color, null))
             if (text.toString() != hour.time) {
                 setText(hour.time)
@@ -103,7 +103,7 @@ class CreateAlarmActivity : AppCompatActivity() {
     }
 
     private fun handleMinuteInputText(minute: TimeInputField) {
-        binding.activityCreateAlarmMinuteTextInput.run {
+        binding.activityAlarmSettingsMinuteTextInput.run {
             setTextColor(resources.getColor(minute.color, null))
             if (text.toString() != minute.time) {
                 setText(minute.time)
@@ -113,15 +113,15 @@ class CreateAlarmActivity : AppCompatActivity() {
 
     private fun handleDialogState(isDialogOpen: Boolean) {
         if (isDialogOpen) {
-            binding.activityCreateAlarmHourTextInput.isEnabled = false
-            binding.activityCreateAlarmMinuteTextInput.isEnabled = false
+            binding.activityAlarmSettingsHourTextInput.isEnabled = false
+            binding.activityAlarmSettingsMinuteTextInput.isEnabled = false
         } else {
-            binding.activityCreateAlarmHourTextInput.isEnabled = true
-            binding.activityCreateAlarmMinuteTextInput.isEnabled = true
+            binding.activityAlarmSettingsHourTextInput.isEnabled = true
+            binding.activityAlarmSettingsMinuteTextInput.isEnabled = true
         }
     }
 
     private fun handleAlarmNameText(alarmName: String) {
-        binding.activityCreateAlarmName.text = alarmName
+        binding.activityAlarmSettingsName.text = alarmName
     }
 }

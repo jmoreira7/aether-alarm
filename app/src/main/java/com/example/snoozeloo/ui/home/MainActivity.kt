@@ -15,7 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snoozeloo.databinding.ActivityMainBinding
 import com.example.snoozeloo.ui.Router
-import com.example.snoozeloo.ui.createalarm.CreateAlarmActivity
+import com.example.snoozeloo.ui.alarmsettings.AlarmSettingsActivity
 import com.example.snoozeloo.ui.vo.UiAlarm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.activityMainAddAlarmButton.setOnClickListener {
-            Intent(this, CreateAlarmActivity::class.java).also {
+            Intent(this, AlarmSettingsActivity::class.java).also {
                 startActivity(it)
             }
         }

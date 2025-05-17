@@ -7,10 +7,10 @@
 
     <!-- activity_create_alarm.xml -->
     <string name="activity_create_alarm_back_button_text">X</string>
-    <string name="activity_create_alarm_save_button_text">Save</string>
-    <string name="activity_create_alarm_name_label_text">Alarm Name</string>
-    <string name="activity_create_alarm_minute_text_input_text">00</string>
-    <string name="activity_create_alarm_hour_text_input_text">00</string>
+    <string name="activity_alarm_settings_save_button_text">Save</string>
+    <string name="activity_alarm_settings_name_label_text">Alarm Name</string>
+    <string name="activity_alarm_settings_minute_text_input_text">00</string>
+    <string name="activity_alarm_settings_hour_text_input_text">00</string>
 
     <!-- alarm_name_dialog_text_input.xml -->
     <string name="alarm_name_dialog_button_text">Save</string>

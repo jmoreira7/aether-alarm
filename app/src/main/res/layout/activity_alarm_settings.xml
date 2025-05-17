@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_create_alarm_main_tile"
+        android:id="@+id/activity_alarm_settings_main_tile"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_create_alarm_main_tile_height"
-        android:layout_margin="@dimen/activity_create_alarm_main_tile_margin"
+        android:layout_height="@dimen/activity_alarm_settings_main_tile_height"
+        android:layout_margin="@dimen/activity_alarm_settings_main_tile_margin"
         android:background="@drawable/alarm_item_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,27 +18,27 @@
         app:layout_constraintVertical_bias="0.2">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_create_alarm_hour_container"
-            android:layout_width="@dimen/activity_create_alarm_hour_container_width"
-            android:layout_height="@dimen/activity_create_alarm_hour_container_height"
-            android:layout_marginTop="@dimen/activity_create_alarm_hour_container_margin_top"
+            android:id="@+id/activity_alarm_settings_hour_container"
+            android:layout_width="@dimen/activity_alarm_settings_hour_container_width"
+            android:layout_height="@dimen/activity_alarm_settings_hour_container_height"
+            android:layout_marginTop="@dimen/activity_alarm_settings_hour_container_margin_top"
             android:background="@drawable/alarm_time_background"
-            app:layout_constraintEnd_toStartOf="@id/activity_create_alarm_minute_container"
-            app:layout_constraintStart_toStartOf="@id/activity_create_alarm_main_tile"
-            app:layout_constraintTop_toTopOf="@+id/activity_create_alarm_main_tile">
+            app:layout_constraintEnd_toStartOf="@id/activity_alarm_settings_minute_container"
+            app:layout_constraintStart_toStartOf="@id/activity_alarm_settings_main_tile"
+            app:layout_constraintTop_toTopOf="@+id/activity_alarm_settings_main_tile">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_create_alarm_hour_text_input"
+                android:id="@+id/activity_alarm_settings_hour_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="@string/activity_create_alarm_hour_text_input_text"
-                android:padding="@dimen/activity_create_alarm_hour_text_input_padding"
+                android:text="@string/activity_alarm_settings_hour_text_input_text"
+                android:padding="@dimen/activity_alarm_settings_hour_text_input_padding"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/activity_create_alarm_hour_text_input_text_size"
+                android:textSize="@dimen/activity_alarm_settings_hour_text_input_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,27 +49,27 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/activity_create_alarm_minute_container"
-            android:layout_width="@dimen/activity_create_alarm_minute_container_width"
-            android:layout_height="@dimen/activity_create_alarm_minute_container_height"
-            android:layout_marginTop="@dimen/activity_create_alarm_minute_container_margin_top"
+            android:id="@+id/activity_alarm_settings_minute_container"
+            android:layout_width="@dimen/activity_alarm_settings_minute_container_width"
+            android:layout_height="@dimen/activity_alarm_settings_minute_container_height"
+            android:layout_marginTop="@dimen/activity_alarm_settings_minute_container_margin_top"
             android:background="@drawable/alarm_time_background"
-            app:layout_constraintEnd_toEndOf="@id/activity_create_alarm_main_tile"
-            app:layout_constraintStart_toEndOf="@id/activity_create_alarm_hour_container"
-            app:layout_constraintTop_toTopOf="@+id/activity_create_alarm_main_tile">
+            app:layout_constraintEnd_toEndOf="@id/activity_alarm_settings_main_tile"
+            app:layout_constraintStart_toEndOf="@id/activity_alarm_settings_hour_container"
+            app:layout_constraintTop_toTopOf="@+id/activity_alarm_settings_main_tile">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/activity_create_alarm_minute_text_input"
+                android:id="@+id/activity_alarm_settings_minute_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="2"
-                android:padding="@dimen/activity_create_alarm_minute_text_input_padding"
-                android:text="@string/activity_create_alarm_minute_text_input_text"
+                android:padding="@dimen/activity_alarm_settings_minute_text_input_padding"
+                android:text="@string/activity_alarm_settings_minute_text_input_text"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/activity_create_alarm_minute_text_input_text_size"
+                android:textSize="@dimen/activity_alarm_settings_minute_text_input_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,33 +81,33 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_create_alarm_secondary_tile"
+        android:id="@+id/activity_alarm_settings_secondary_tile"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_create_alarm_secondary_tile_height"
-        android:layout_margin="@dimen/activity_create_alarm_secondary_tile_margin"
+        android:layout_height="@dimen/activity_alarm_settings_secondary_tile_height"
+        android:layout_margin="@dimen/activity_alarm_settings_secondary_tile_margin"
         android:background="@drawable/alarm_item_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_create_alarm_main_tile"
+        app:layout_constraintTop_toBottomOf="@id/activity_alarm_settings_main_tile"
         app:layout_constraintVertical_bias="0">
 
         <TextView
-            android:id="@+id/activity_create_alarm_name_label"
+            android:id="@+id/activity_alarm_settings_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_create_alarm_name_label_margin_start"
+            android:layout_marginStart="@dimen/activity_alarm_settings_name_label_margin_start"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/activity_create_alarm_name_label_text"
+            android:text="@string/activity_alarm_settings_name_label_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/activity_create_alarm_name"
+            android:id="@+id/activity_alarm_settings_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_create_alarm_name_margin_end"
+            android:layout_marginEnd="@dimen/activity_alarm_settings_name_margin_end"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -119,34 +119,34 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/activity_create_alarm_back_button"
-        android:layout_width="@dimen/activity_create_alarm_back_button_width"
-        android:layout_height="@dimen/activity_create_alarm_back_button_height"
-        android:layout_marginStart="@dimen/activity_create_alarm_back_button_margin_start"
+        android:id="@+id/activity_alarm_settings_back_button"
+        android:layout_width="@dimen/activity_alarm_settings_back_button_width"
+        android:layout_height="@dimen/activity_alarm_settings_back_button_height"
+        android:layout_marginStart="@dimen/activity_alarm_settings_back_button_margin_start"
         android:background="@drawable/back_button_background"
         android:fontFamily="@font/montserrat_semi_bold"
-        android:padding="@dimen/activity_create_alarm_back_button_padding"
+        android:padding="@dimen/activity_alarm_settings_back_button_padding"
         app:icon="@drawable/close_icon"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         android:textColor="@color/white"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/activity_create_alarm_main_tile"
+        app:layout_constraintBottom_toTopOf="@id/activity_alarm_settings_main_tile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/activity_create_alarm_save_button"
-        android:layout_width="@dimen/activity_create_alarm_save_button_width"
-        android:layout_height="@dimen/activity_create_alarm_save_button_height"
-        android:layout_marginEnd="@dimen/activity_create_alarm_save_button_margin_end"
+        android:id="@+id/activity_alarm_settings_save_button"
+        android:layout_width="@dimen/activity_alarm_settings_save_button_width"
+        android:layout_height="@dimen/activity_alarm_settings_save_button_height"
+        android:layout_marginEnd="@dimen/activity_alarm_settings_save_button_margin_end"
         android:background="@drawable/save_button_background"
         android:fontFamily="@font/montserrat_semi_bold"
-        android:padding="@dimen/activity_create_alarm_save_button_padding"
-        android:text="@string/activity_create_alarm_save_button_text"
-        android:textSize="@dimen/activity_create_alarm_save_button_text_size"
+        android:padding="@dimen/activity_alarm_settings_save_button_padding"
+        android:text="@string/activity_alarm_settings_save_button_text"
+        android:textSize="@dimen/activity_alarm_settings_save_button_text_size"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@id/activity_create_alarm_main_tile"
+        app:layout_constraintBottom_toTopOf="@id/activity_alarm_settings_main_tile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:enabled="false" />

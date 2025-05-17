@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui.createalarm
+package com.example.snoozeloo.ui.alarmsettings
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

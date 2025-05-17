@@ -30,7 +30,7 @@
             android:exported="false"
             android:theme="@style/Base.Theme.Snoozeloo" />
 
-        <activity android:name=".ui.createalarm.CreateAlarmActivity"
+        <activity android:name=".ui.alarmsettings.AlarmSettingsActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.Snoozeloo" />
 

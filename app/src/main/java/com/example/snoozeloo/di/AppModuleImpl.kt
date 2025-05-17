@@ -3,9 +3,9 @@ package com.example.snoozeloo.di
 import android.app.AlarmManager
 import android.content.Context
 import androidx.room.Room
-import com.example.snoozeloo.data.AlarmDatabase
-import com.example.snoozeloo.data.AlarmScheduler
-import com.example.snoozeloo.data.DefaultAlarmRepository
+import com.example.snoozeloo.data.database.AlarmDatabase
+import com.example.snoozeloo.data.framework.AlarmScheduler
+import com.example.snoozeloo.data.repository.DefaultAlarmRepository
 import com.example.snoozeloo.domain.repository.AlarmRepository
 
 class AppModuleImpl(

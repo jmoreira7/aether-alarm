@@ -1,4 +1,4 @@
-package com.example.snoozeloo.data
+package com.example.snoozeloo.data.framework
 
 import android.app.AlarmManager
 import android.app.AlarmManager.AlarmClockInfo
@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.snoozeloo.domain.entity.Alarm
 import com.example.snoozeloo.receiver.AlarmReceiver
 
 class AlarmScheduler(

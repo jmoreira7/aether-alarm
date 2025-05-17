@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Snoozeloo.Splashscreen">
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Snoozeloo.Splashscreen">
             <intent-filter>

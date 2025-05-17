@@ -1,4 +1,4 @@
-package com.example.snoozeloo.ui.home
+package com.example.snoozeloo.ui.main
 
 import android.annotation.SuppressLint
 import android.util.Log

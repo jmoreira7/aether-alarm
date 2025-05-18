@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.activityMainAddAlarmButton.setOnClickListener {
-            launchAlarmSettingsActivity(null, EMPTY_STRING)
+            launchAlarmSettingsActivity(null)
         }
     }
 
@@ -111,27 +111,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun launchAlarmSettingsActivity(
-        alarmId: Int?,
-        alarmName: String = EMPTY_STRING,
-        alarmHour: String = EMPTY_STRING,
-        alarmMinute: String = EMPTY_STRING
-    ) {
+    private fun launchAlarmSettingsActivity(alarmId: Int?) {
         Intent(this, AlarmSettingsActivity::class.java).apply {
             alarmId?.let { id -> putExtra(ALARM_ID_EXTRA, id) }
-            putExtra(ALARM_NAME_EXTRA, alarmName)
-            putExtra(ALARM_HOUR_EXTRA, alarmHour)
-            putExtra(ALARM_MINUTE_EXTRA, alarmMinute)
         }.also { intent -> startActivity(intent) }
     }
 
-    private fun onAlarmItemClicked(
-        alarmId: Int,
-        alarmName: String,
-        alarmHour: String,
-        alarmMinute: String
-    ) {
-        launchAlarmSettingsActivity(alarmId, alarmName, alarmHour, alarmMinute)
+    private fun onAlarmItemClicked(alarmId: Int) {
+        launchAlarmSettingsActivity(alarmId)
     }
 
     private fun onAlarmItemSwitchToggled(alarmId: Int, isChecked: Boolean) {
@@ -144,11 +131,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
-        private const val EMPTY_STRING = ""
         private const val ALARM_ID_EXTRA = "ALARM_ID"
-        private const val ALARM_NAME_EXTRA = "ALARM_NAME"
-        private const val ALARM_HOUR_EXTRA = "ALARM_HOUR"
-        private const val ALARM_MINUTE_EXTRA = "ALARM_MINUTE"
     }
 
 }

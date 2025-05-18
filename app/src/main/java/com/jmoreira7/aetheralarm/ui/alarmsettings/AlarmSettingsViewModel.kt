@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.jmoreira7.aetheralarm.R
 import com.jmoreira7.aetheralarm.domain.entity.Alarm
 import com.jmoreira7.aetheralarm.domain.repository.AlarmRepository
+import com.jmoreira7.aetheralarm.ui.getHourText
+import com.jmoreira7.aetheralarm.ui.getMinuteText
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -28,40 +30,32 @@ class AlarmSettingsViewModel(
 ) : ViewModel() {
     private var isHourFocusedOnce = false
     private var isMinuteFocusedOnce = false
-    var alarmId: Int? = null
+    private var alarm: Alarm? = null
     val alarmName: String
         get() = state.value.alarmName
 
     private val _state = MutableStateFlow(CreateAlarmUiState())
     val state = _state.asStateFlow()
 
-    fun setAlarmName(alarmName: String) {
-        _state.update { state ->
-            state.copy(
-                alarmName = alarmName
-            )
-        }
-    }
+    fun setup(alarmId: Int) {
+        viewModelScope.launch {
+            alarmRepository.getAlarm(alarmId)?.let { alarm ->
+                this@AlarmSettingsViewModel.alarm = alarm
 
-    fun setAlarmHour(alarmHour: String) {
-        _state.update { state ->
-            state.copy(
-                hourInputField = TimeInputField(
-                    time = alarmHour,
-                    color = R.color.dodger_blue
-                )
-            )
-        }
-    }
-
-    fun setAlarmMinute(alarmMinute: String) {
-        _state.update { state ->
-            state.copy(
-                minuteInputField = TimeInputField(
-                    time = alarmMinute,
-                    color = R.color.dodger_blue
-                )
-            )
+                _state.update { state ->
+                    state.copy(
+                        hourInputField = TimeInputField(
+                            time = getHourText(alarm.triggerTime, false),
+                            color = R.color.dodger_blue
+                        ),
+                        minuteInputField = TimeInputField(
+                            time = getMinuteText(alarm.triggerTime),
+                            color = R.color.dodger_blue
+                        ),
+                        alarmName = alarm.name
+                    )
+                }
+            }
         }
     }
 
@@ -101,10 +95,10 @@ class AlarmSettingsViewModel(
 
             Log.d(TAG, "Saving alarm time in millis: $timeInMillis")
 
-            alarmId?.let { alarmId ->
+            alarm?.let { alarm ->
                 alarmRepository.updateAlarm(
                     Alarm(
-                        id = alarmId,
+                        id = alarm.id,
                         triggerTime = timeInMillis,
                         name = state.value.alarmName,
                         isEnabled = true

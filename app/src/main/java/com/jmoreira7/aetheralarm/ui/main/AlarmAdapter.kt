@@ -11,12 +11,7 @@ import com.jmoreira7.aetheralarm.ui.vo.UiAlarm
 import com.jmoreira7.aetheralarm.ui.vo.toText
 
 class AlarmAdapter(
-    private val onAlarmItemClicked: (
-        alarmId: Int,
-        alarmName: String,
-        alarmHour: String,
-        alarmMinute: String
-    ) -> Unit,
+    private val onAlarmItemClicked: (alarmId: Int) -> Unit,
     private val onSwitchToggled: (alarmId: Int, isChecked: Boolean) -> Unit,
     private val onDeleteClicked: (alarmId: Int) -> Unit
 ) : RecyclerView.Adapter<AlarmViewHolder>() {
@@ -66,7 +61,7 @@ class AlarmAdapter(
         holder.itemView.setOnClickListener {
             Log.d(TAG, "Alarm item clicked. [Name: ${alarm.name}], [Id: ${alarm.id}]")
 
-            onAlarmItemClicked(alarm.id, alarm.name, alarm.hour, alarm.minute)
+            onAlarmItemClicked(alarm.id)
         }
     }
 

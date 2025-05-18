@@ -77,4 +77,9 @@
     <dimen name="alarm_name_dialog_title_text_margin_start">16dp</dimen>
     <dimen name="alarm_name_dialog_title_text_margin_top">16dp</dimen>
     <dimen name="alarm_name_dialog_title_text_size">16sp</dimen>
+    <dimen name="activity_alarm_trigger_alarm_icon_margin_bottom">24dp</dimen>
+    <dimen name="activity_alarm_trigger_time_text_size">82sp</dimen>
+    <dimen name="activity_alarm_trigger_alarm_name_text_size">24sp</dimen>
+    <dimen name="activity_alarm_trigger_turn_off_button_margin_top">16dp</dimen>
+    <dimen name="activity_alarm_trigger_turn_off_button_text_size">24sp</dimen>
 </resources>

@@ -17,4 +17,5 @@
 
     <!-- alarm_name_dialog_title.xml -->
     <string name="alarm_name_dialog_title_text">Alarm Name</string>
+    <string name="activity_alarm_trigger_turn_off_button_text">Turn Off</string>
 </resources>

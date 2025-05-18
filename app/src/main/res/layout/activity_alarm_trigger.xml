@@ -7,13 +7,57 @@
     android:layout_height="match_parent"
     tools:context=".ui.alarmtrigger.AlarmTriggerActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/activity_alarm_trigger_alarm_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alarm Trigger"
+        android:layout_marginBottom="@dimen/activity_alarm_trigger_alarm_icon_margin_bottom"
+        android:src="@drawable/alarm_trigger_logo"
+        app:layout_constraintBottom_toTopOf="@id/activity_alarm_trigger_time_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/activity_alarm_trigger_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/dodger_blue"
+        android:textSize="@dimen/activity_alarm_trigger_time_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10:00" />
+
+    <TextView
+        android:id="@+id/activity_alarm_trigger_alarm_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:textSize="@dimen/activity_alarm_trigger_alarm_name_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_alarm_trigger_time_text"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Work" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_alarm_trigger_turn_off_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_alarm_trigger_turn_off_button_margin_top"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:text="@string/activity_alarm_trigger_turn_off_button_text"
+        android:textSize="@dimen/activity_alarm_trigger_turn_off_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_alarm_trigger_alarm_name_text"
+        app:layout_constraintStart_toStartOf="@id/activity_alarm_trigger_time_text"
+        app:layout_constraintEnd_toEndOf="@id/activity_alarm_trigger_time_text"
+        app:layout_constraintVertical_bias="0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

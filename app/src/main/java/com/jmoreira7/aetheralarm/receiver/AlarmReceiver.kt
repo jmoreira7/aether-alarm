@@ -8,14 +8,20 @@ import com.jmoreira7.aetheralarm.ui.alarmtrigger.AlarmTriggerActivity
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.d("AlarmReceiver", "onReceive called with intent: $intent")
+        Log.d(TAG, "onReceive called with intent: $intent")
 
-        context?.let {
-            val newIntent = Intent(it, AlarmTriggerActivity::class.java).apply {
+        intent?.getIntExtra(ALARM_ID_EXTRA, -1)?.let { alarmId ->
+            Intent(context, AlarmTriggerActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                putExtra(ALARM_ID_EXTRA, alarmId)
             }
-
-            it.startActivity(newIntent)
+        }.also { newIntent ->
+            context?.startActivity(newIntent)
         }
+    }
+
+    companion object {
+        private const val TAG = "AlarmReceiver"
+        const val ALARM_ID_EXTRA = "ALARM_ID"
     }
 }

@@ -12,8 +12,6 @@ class AlarmScheduler(
     private val context: Context,
     private val alarmManager: AlarmManager
 ) {
-    private val receiverIntent = Intent(context, AlarmReceiver::class.java)
-
     fun canScheduleExactAlarms(): Boolean {
         if (alarmManager.canScheduleExactAlarms()) {
             Log.i(TAG, "Can schedule exact alarms.")
@@ -25,14 +23,21 @@ class AlarmScheduler(
     }
 
     fun scheduleAlarm(alarmId: Int, triggerTime: Long) {
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            alarmId,
-            receiverIntent,
-            PendingIntent.FLAG_IMMUTABLE
-        )
+        if (!alarmManager.canScheduleExactAlarms()) {
+            Log.d(TAG, "Cannot schedule exact alarms")
+            return
+        }
 
-        if (alarmManager.canScheduleExactAlarms()) {
+        Intent(context, AlarmReceiver::class.java).apply {
+            putExtra(ALARM_ID_EXTRA, alarmId)
+        }.let { intent ->
+            PendingIntent.getBroadcast(
+                context,
+                alarmId,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        }.also { pendingIntent ->
             alarmManager.setAlarmClock(
                 AlarmClockInfo(
                     triggerTime,
@@ -40,23 +45,26 @@ class AlarmScheduler(
                 ),
                 pendingIntent
             )
-        } else {
-            Log.d(TAG, "Cannot schedule exact alarms")
         }
     }
 
     fun cancelAlarm(alarmId: Int) {
-        alarmManager.cancel(
-            PendingIntent.getBroadcast(
-                context,
-                alarmId,
-                receiverIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        Intent(context, AlarmReceiver::class.java).apply {
+            putExtra(ALARM_ID_EXTRA, alarmId)
+        }.also { intent ->
+            alarmManager.cancel(
+                PendingIntent.getBroadcast(
+                    context,
+                    alarmId,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
             )
-        )
+        }
     }
 
     companion object {
         private const val TAG = "AlarmScheduler"
+        private const val ALARM_ID_EXTRA = "ALARM_ID"
     }
 }

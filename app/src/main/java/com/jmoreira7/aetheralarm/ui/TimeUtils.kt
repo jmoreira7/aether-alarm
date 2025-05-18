@@ -51,3 +51,22 @@ private fun timeDifferenceFromNowNormalized(timeMillis: Long): Pair<Int, Int> {
 
     return Pair(hours, minutes)
 }
+
+fun getHourText(triggerTime: Long, isAmPm: Boolean = true): String {
+    return getHour(triggerTime).let { hour ->
+        when {
+            hour in 0..9 -> "0$hour"
+            hour in 10..12 -> "$hour"
+            hour in 13..19 && isAmPm -> "0${hour - 12}"
+            hour in 20..23 && isAmPm -> "${hour - 12}"
+            hour in 13..23 -> "$hour"
+            else -> ""
+        }
+    }
+}
+
+fun getMinuteText(triggerTime: Long): String {
+    return getMinute(triggerTime).let { minute ->
+        if (minute < 10) "0$minute" else "$minute"
+    }
+}

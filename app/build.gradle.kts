@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.snoozeloo"
+    namespace = "com.jmoreira7.aetheralarm"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.snoozeloo"
+        applicationId = "com.jmoreira7.aetheralarm"
         minSdk = 34
         targetSdk = 34
         versionCode = 1

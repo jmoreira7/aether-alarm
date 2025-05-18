@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Snoozeloo</string>
+    <string name="app_name">Aether Alarm</string>
 
     <!-- activity_main.xml -->
     <string name="activity_main_title">Your Alarms</string>

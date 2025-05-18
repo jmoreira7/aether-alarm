@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Snoozeloo" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AetherAlarm" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/dodger_blue</item>
         <item name="android:windowBackground">@color/wild_sand</item>
         <item name="android:textColorPrimary">@color/vulcan</item>
@@ -8,16 +8,16 @@
         <item name="android:textSize">@dimen/base_theme_snoozelo_text_size</item>
     </style>
 
-    <style name="Theme.Snoozeloo" parent="Base.Theme.Snoozeloo" />
+    <style name="Theme.AetherAlarm" parent="Base.Theme.AetherAlarm" />
 
-    <style name="Theme.Snoozeloo.Title" parent="Base.Theme.Snoozeloo">
+    <style name="Theme.AetherAlarm.Title" parent="Base.Theme.AetherAlarm">
         <item name="android:textSize">@dimen/theme_snoozeloo_title_text_size</item>
     </style>
 
-    <style name="Theme.Snoozeloo.Splashscreen" parent="Theme.SplashScreen">
+    <style name="Theme.AetherAlarm.Splashscreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/dodger_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/alarm_logo</item>
         <item name="android:windowBackground">@color/wild_sand</item>
-        <item name="postSplashScreenTheme">@style/Theme.Snoozeloo</item>
+        <item name="postSplashScreenTheme">@style/Theme.AetherAlarm</item>
     </style>
 </resources>

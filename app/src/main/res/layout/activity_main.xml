@@ -14,7 +14,7 @@
         android:layout_marginStart="@dimen/activity_main_title_margin_start"
         android:layout_marginTop="@dimen/activity_main_title_margin_top"
         android:text="@string/activity_main_title"
-        android:theme="@style/Theme.Snoozeloo.Title"
+        android:theme="@style/Theme.AetherAlarm.Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
         android:paddingStart="@dimen/activity_main_no_alarms_yet_padding_start"
         android:paddingEnd="@dimen/activity_main_no_alarms_yet_padding_end"
         android:text="@string/activity_main_no_alarms_yet_text"
-        android:theme="@style/Theme.Snoozeloo"
+        android:theme="@style/Theme.AetherAlarm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

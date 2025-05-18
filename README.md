@@ -7,7 +7,7 @@ A modern, minimalist alarm app for Android with a clean design and intuitive int
 - Create and manage multiple alarms
 - Enable/disable alarms with a single tap
 - Custom alarm names for better organization
-- Precise scheduling using Android's exact alarm API
+- Precise scheduling using Android's alarm manager API
 - Clean, modern UI with edge-to-edge design
 - Splash screen for a polished app launch experience
 
@@ -27,9 +27,9 @@ A modern, minimalist alarm app for Android with a clean design and intuitive int
 
 ```
 com.jmoreira7.aetheralarm/
-├── data/           # Data layer (repositories, database)
+├── data/           # Data layer
 ├── di/             # Dependency injection
-├── domain/         # Domain layer (entities, use cases)
+├── domain/         # Domain layer
 ├── receiver/       # Broadcast receivers
 └── ui/             # UI layer
     ├── alarmsettings/  # Alarm creation/editing

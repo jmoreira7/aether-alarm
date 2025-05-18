@@ -3,6 +3,7 @@ package com.jmoreira7.aetheralarm.ui.main
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jmoreira7.aetheralarm.R
@@ -31,11 +32,18 @@ class AlarmAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
         val alarm = alarms[position]
+
         holder.title.text = alarm.name
+
         holder.time.text = "${alarm.hour}:${alarm.minute}"
+
         holder.amPm.text = alarm.amPm.toText()
-        holder.timeRemaining.text =
-            "Alarm in ${alarm.hourTimeRemaining}h ${alarm.minuteTimeRemaining}min"
+
+        holder.timeRemaining.apply {
+            text = "Alarm in ${alarm.hourTimeRemaining}h ${alarm.minuteTimeRemaining}min"
+            visibility = if (alarm.isEnabled) View.VISIBLE else View.INVISIBLE
+        }
+
         holder.enableSwitch.apply {
             isChecked = alarm.isEnabled
 
@@ -48,11 +56,13 @@ class AlarmAdapter(
                 onSwitchToggled(alarm.id, isChecked)
             }
         }
+
         holder.deleteButton.setOnClickListener {
             Log.d(TAG, "Delete button clicked for alarm: ${alarm.name}")
 
             onDeleteClicked(alarm.id)
         }
+
         holder.itemView.setOnClickListener {
             Log.d(TAG, "Alarm item clicked. [Name: ${alarm.name}], [Id: ${alarm.id}]")
 
